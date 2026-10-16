@@ -32,6 +32,7 @@ const motionReady = fetch("assets/demo-motion.json").then(response => {
 
 function stopAudio() {
   audioGeneration += 1;
+  soundFailed = false;
   for (const audio of [lossAudio, recoveryAudio]) { audio.pause(); audio.currentTime = 0; }
 }
 function playAlert(role) {
@@ -44,7 +45,9 @@ function playAlert(role) {
     soundFailed = false; renderSound();
   }).catch(() => {
     if (generation !== audioGeneration) return;
-    soundFailed = true; renderSound();
+    soundFailed = true; soundEnabled = false;
+    for (const media of [lossAudio, recoveryAudio]) media.muted = true;
+    renderSound();
   });
 }
 function primeAudio() {
@@ -60,19 +63,17 @@ function primeAudio() {
   }
 }
 function renderSound() {
-  soundButton.setAttribute("aria-pressed", String(soundEnabled));
   soundButton.setAttribute("aria-label", soundEnabled ? "Mute preview sound" : "Enable preview sound");
   soundButton.querySelector("span").textContent = soundEnabled ? "Sound on" : "Sound off";
   soundButton.dataset.muted = String(!soundEnabled);
   document.querySelector("#sound-feedback").textContent = soundFailed
-    ? "Sound could not start. Tap Sound to retry. The visual preview still works." : "";
+    ? "Sound could not start. Turn sound on to retry. The visual preview still works." : "";
 }
 function render() {
   stage.dataset.state = state.connection;
   stage.dataset.alert = state.alert || "none";
   stage.dataset.pending = String(state.pending);
   area.dataset.plugged = String(state.plugged);
-  cable.setAttribute("aria-pressed", String(state.plugged));
   cable.setAttribute("aria-label", state.plugged ? "Unplug camera" : "Plug in camera");
   document.querySelector("#tether-action").textContent = state.plugged ? "Unplug camera" : "Plug in camera";
   document.querySelector("#tether-connection").textContent = state.plugged ? "Cable connected" : "Cable disconnected";
@@ -85,7 +86,7 @@ function render() {
   document.querySelector("#card-status-text").textContent = state.connection === "connected" ? "Connected" : state.connection === "lost" ? "Lost" : "Waiting";
   document.querySelector("#card-status-symbol").dataset.symbol = state.connection;
   const source = document.querySelector("#card-source");
-  if (state.pending) source.innerHTML = 'Mac <span class="source-check" aria-label="detected">✓</span><span class="source-arrow" aria-hidden="true">›</span> Capture One <span class="pending-circle" aria-label="pending"></span>';
+  if (state.pending) source.innerHTML = 'Mac <span class="source-check" aria-label="detected">✓</span><span class="source-arrow" aria-hidden="true">→</span> Capture One <span class="pending-circle" aria-label="pending"></span>';
   else if (state.connection === "connected") source.textContent = "Capture One";
   else source.innerHTML = 'Capture One <span class="pending-circle" aria-label="pending"></span>';
   document.querySelector("#card-speed-row").hidden = !(state.connection === "connected" || (state.connection === "waiting" && state.pending));
@@ -95,7 +96,7 @@ function render() {
   document.querySelector("#overlay-dismiss").hidden = state.alert !== "loss";
   document.querySelector("#menu-camera").dataset.symbol = state.connection;
   let message;
-  if (state.paused) message = "Preview paused. Plug in the camera or reset to try again.";
+  if (state.paused) message = "Preview paused. Use the cable or reset to try again.";
   else if (state.pending) message = state.connection === "lost"
     ? "USB is back. Lost stays on until Capture One confirms the tether."
     : "The Mac sees the camera. Waiting for Capture One to confirm the tether.";
@@ -123,6 +124,10 @@ function drawGlow() {
   const time = role === "loss" && !audio.paused ? audio.currentTime % 2.8
     : role === "loss" ? elapsed % 2.8 : Math.min(3, elapsed);
   const steady = motionPreference.matches;
+  if (curve) {
+    document.querySelector(".edge-light").style.opacity = String(steady ? curve.steadyOpacity : curve.opacity);
+    if (curve.color) stage.style.setProperty("--glow-color", curve.color.map(c => Math.round(c * 255)).join(" "));
+  }
   const core = steady || !curve ? 1 : sample(curve.core, time, curve.duration);
   const band = steady || !curve ? 1 : sample(curve.band, time, curve.duration);
   const entrance = Math.min(1, elapsed / 0.15);
@@ -160,12 +165,9 @@ cable.addEventListener("click", () => { primeAudio(); dispatch({ type: "toggle" 
 document.querySelectorAll("[data-dismiss-preview]").forEach(button => button.addEventListener("click", () => dispatch({ type: "dismiss" })));
 document.querySelector("#demo-reset").addEventListener("click", () => dispatch({ type: "reset" }));
 soundButton.addEventListener("click", () => {
-  if (soundFailed && soundEnabled) { if (state.alert) playAlert(state.alert); }
-  else {
-    soundEnabled = !soundEnabled;
-    for (const audio of [lossAudio, recoveryAudio]) audio.muted = !soundEnabled;
-    if (soundEnabled && state.alert && (state.alert === "loss" ? lossAudio : recoveryAudio).paused) playAlert(state.alert);
-  }
+  soundEnabled = !soundEnabled;
+  for (const audio of [lossAudio, recoveryAudio]) audio.muted = !soundEnabled;
+  if (soundEnabled && state.alert && (state.alert === "loss" ? lossAudio : recoveryAudio).paused) playAlert(state.alert);
   renderSound();
 });
 document.addEventListener("visibilitychange", () => { if (document.hidden) dispatch({ type: "pause" }); });

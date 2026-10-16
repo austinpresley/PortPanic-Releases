@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
   <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
-  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css">
-  <script type="module" src="app.js"></script>
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=tether-1">
+  <script type="module" src="app.js?v=tether-1"></script>
 </head>
 <body>
   <header class="header wrap">
@@ -39,7 +39,7 @@
           <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
           <div class="demo-dismiss" id="overlay-dismiss" hidden><span>Lost: Canon EOS R5</span><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert">Dismiss</button></div>
         </div>
-        <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-pressed="false" aria-describedby="demo-caption">
+        <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-describedby="demo-caption">
           <svg class="tether-drawing" viewBox="0 0 390 72" aria-hidden="true">
             <g class="tether-camera"><path d="M20 25h12l4-7h19l4 7h12v30H20Z"/><circle cx="45" cy="40" r="11"/><circle cx="45" cy="40" r="6"/><path d="M23 29h8"/></g>
             <path class="wire" d="M72 40h104m39 0h90"/>
@@ -49,10 +49,10 @@
           </svg>
           <span class="tether-label"><strong id="tether-action">Plug in camera</strong><span id="tether-connection">Cable disconnected</span></span>
         </button>
-        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Reset demo</button></div>
+        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Reset demo</button></div>
         <p class="demo-caption" id="demo-caption" aria-live="polite">Plug in the camera to start. This interactive preview uses sound.</p>
         <p class="sound-feedback" id="sound-feedback" role="status"></p>
-        <p class="demo-footnote">Web preview. Uses the app's Swell and Bloom sounds and glow timing.</p>
+        <p class="demo-footnote">Web preview with the menu open. The app's sounds and glow timing.</p>
         <audio id="loss-audio" src="assets/sounds/swell.wav" preload="auto" loop></audio>
         <audio id="recovery-audio" src="assets/sounds/bloom.wav" preload="auto"></audio>
       </div>
