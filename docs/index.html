@@ -7,21 +7,21 @@
   <meta property="og:description" content="Know when your tether drops. A small Mac menu bar app for Capture One.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
   <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=notch-1">
-  <script type="module" src="app.js?v=notch-1"></script>
+  <script type="module" src="app.js?v=beta-1"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="header wrap">
     <a class="brand" href="./" aria-label="PortPanic home"><img src="assets/icon.png" width="32" height="32" alt=""><span>PortPanic</span></a>
-    <nav aria-label="Main navigation"><a href="#try-it" data-section-link>Try it</a><a class="nav-questions" href="#questions" data-section-link>Questions</a><a href="guide.html">User guide</a><a class="nav-release" href="#download" data-section-link>Release status</a></nav>
+    <nav aria-label="Main navigation"><a href="#try-it" data-section-link>Try it</a><a class="nav-questions" href="#questions" data-section-link>Questions</a><a href="guide.html">User guide</a><a class="nav-release" href="#download" data-section-link>Download beta</a></nav>
   </header>
   <main id="main" tabindex="-1">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
         <h1 id="hero-title">Know when<br> your tether drops.</h1>
         <p class="intro">A red glow and a repeating sound when your camera disconnects from Capture One.</p>
-        <div class="hero-actions"><a id="hero-action" class="button primary" href="#try-it" data-section-link>Try the alert</a><a class="secondary-link" href="#download" data-section-link>Release status</a></div>
-        <p id="hero-availability" class="availability"><span class="availability-desktop">Free for Mac. Public download coming soon.</span><span class="availability-mobile">Free for Mac. Download coming soon.</span></p>
+        <div class="hero-actions"><a id="hero-action" class="button primary" href="https://github.com/austinpresley/PortPanic-Releases/releases/download/v3.0.0-beta.1-441/PortPanic-3.0.0-441-beta.dmg">Download Beta 1 for Mac</a><a class="secondary-link" href="#download" data-section-link>Download beta</a></div>
+        <p id="hero-availability" class="availability"><span class="availability-desktop">Free. Version 3.0.0 Beta 1.</span><span class="availability-mobile">Free. Version 3.0.0 Beta 1.</span></p>
       </div>
       <div class="demo-area" id="try-it" data-plugged="true" aria-labelledby="demo-title">
         <div class="demo-toolbar"><h2 id="demo-title" tabindex="-1">Interactive preview</h2><div class="demo-controls"><button type="button" id="demo-sound" aria-label="Enable preview sound" aria-pressed="false" data-muted="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound off</span></button><button type="button" id="demo-reset"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6a7 7 0 1 1-1 6M4 2v5h5"/></svg>Reset</button></div></div>
@@ -104,7 +104,7 @@
       <p class="quiet-caption">The rest of the time, PortPanic stays in your menu bar.</p>
     </section>
     <section class="settings-band" aria-labelledby="settings-title"><div class="settings-layout wrap"><div class="settings-copy"><h2 id="settings-title">Set it up for your shoot.</h2><p>Choose your sounds, colors, displays and audio output. Test both alerts without pulling a cable.</p><p class="privacy">Monitoring stays on your Mac.<br>No account or analytics.</p><p class="update-caption">Automatic update checks are optional.<br>You choose when to install.</p></div><figure class="settings-figure"><button type="button" id="settings-enlarge" aria-label="View PortPanic Settings at full size"><img src="assets/alerts-settings-440.png" width="620" height="708" alt="Native PortPanic Alerts settings with Swell and Bloom sounds, Loss and Recovery previews, and shared light controls." loading="lazy"><span class="image-hint">View Settings</span></button></figure></div></section>
-    <section id="download" class="release wrap" aria-labelledby="release-title"><div><h2 id="release-title" tabindex="-1">PortPanic for Mac</h2><p id="download-status">Free. Public download coming soon.</p><p id="release-detail">Release checks are still in progress.</p></div><div class="release-actions"><a id="download-link" class="button outline" href="https://github.com/austinpresley/PortPanic-Releases/releases">View releases on GitHub</a><a href="guide.html">Read the user guide</a></div></section>
+    <section id="download" class="release wrap" aria-labelledby="release-title"><div><h2 id="release-title" tabindex="-1">PortPanic for Mac</h2><p id="download-status">Free. Version 3.0.0 Beta 1.</p><p id="release-detail">Public beta for testing. Real-camera, extended-shooting and fresh-install checks are still in progress. Test with your setup before relying on it during a shoot.</p></div><div class="release-actions"><a id="download-link" class="button outline" href="https://github.com/austinpresley/PortPanic-Releases/releases/download/v3.0.0-beta.1-441/PortPanic-3.0.0-441-beta.dmg">Download Beta 1 for Mac</a><a href="guide.html">Read the user guide</a></div></section>
     <section id="questions" class="questions wrap" aria-labelledby="questions-title"><div><h2 id="questions-title" tabindex="-1">A few things to know.</h2><p class="help-line">Need help? <a href="guide.html">Read the guide</a> or <a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">report a problem</a>.</p></div><div class="question-list">
       <details><summary>Does it work without Capture One?</summary><p>No. PortPanic reads Capture One's tethered-camera list. USB events can detect a cable drop sooner. Capture One 16.x is required.</p></details>
       <details><summary>Will it interrupt my work?</summary><p>The alert leaves keyboard focus in the app you are using. Clicks pass through the glow. Only Dismiss takes a click.</p></details>

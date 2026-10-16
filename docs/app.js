@@ -1,7 +1,7 @@
 import { initialState, transition } from "./demo-state.mjs?v=redesign-1";
 import { cable, clampPlug, dragCrossing, restingX, stepSpring, wirePath } from "./tether-cable.mjs?v=redesign-1";
 
-import { releaseView } from "./release-view.mjs?v=redesign-1";
+import { releaseView } from "./release-view.mjs?v=beta-1";
 
 import { displayContour } from "./display-contour.mjs?v=notch-1";
 

@@ -9,9 +9,14 @@ confirms it. One menu bar item. One Settings window.
 
 ## Download
 
-PortPanic is free for Mac. The public download will appear on the website and
-Releases page after release checks are complete. It is designed for macOS 14
-or later, Apple silicon and Intel, with Capture One 16.x.
+Download 3.0.0 Beta 1 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
+or [Releases](https://github.com/austinpresley/PortPanic-Releases/releases).
+PortPanic is free for Mac. It is designed for macOS 14 or later, Apple silicon
+and Intel, with Capture One 16.x.
+
+This is a public beta for testing. Real-camera drop/recovery, extended shooting,
+fresh-install permissions and macOS 14/Intel coverage are still being checked.
+Test with your own setup before relying on it during a shoot.
 
 ## Updates and privacy
 
@@ -31,5 +36,8 @@ audio device names, but no image names or session paths.
 
 This repository holds public downloads, release notes, the update feed and the
 website. PortPanic's application source is maintained privately.
+
+PortPanic is free to use and share unmodified. Bundled components retain their
+own licenses in ThirdPartyNotices.txt inside the app's Resources folder.
 
 By [Austin Presley](https://apresley.com/apps).
