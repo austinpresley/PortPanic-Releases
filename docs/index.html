@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
   <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
-  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=tether-1">
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=dismiss-440">
   <script type="module" src="app.js?v=tether-1"></script>
 </head>
 <body>
@@ -37,7 +37,10 @@
             <div class="card-foot" id="card-loss-row" hidden><span id="card-notice"></span><button id="card-dismiss" type="button" data-dismiss-preview>Dismiss</button></div>
           </div>
           <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
-          <div class="demo-dismiss" id="overlay-dismiss" hidden><span>Lost: Canon EOS R5</span><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert">Dismiss</button></div>
+          <div class="demo-dismiss" id="overlay-dismiss" hidden>
+            <div class="dismiss-context"><strong class="dismiss-camera">Canon EOS R5</strong><div class="dismiss-status"><span class="dismiss-symbol" aria-hidden="true">!</span><strong>Lost</strong><span class="dismiss-source">Capture One</span></div></div>
+            <div class="dismiss-action"><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert for Canon EOS R5">Dismiss</button></div>
+          </div>
         </div>
         <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-describedby="demo-caption">
           <svg class="tether-drawing" viewBox="0 0 390 72" aria-hidden="true">
