@@ -2,53 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="PortPanic is a free Mac menu bar app that makes a dropped Capture One camera tether hard to miss.">
+  <meta name="description" content="A red glow and a repeating sound when your camera disconnects from Capture One. PortPanic is free for Mac.">
   <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
-  <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
+  <meta property="og:description" content="Know when your tether drops. A small Mac menu bar app for Capture One.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
-  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=cable-1">
-  <script type="module" src="app.js?v=cable-1"></script>
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=redesign-1">
+  <script type="module" src="app.js?v=redesign-1"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="header wrap">
-    <a class="brand" href="./" aria-label="PortPanic home"><img src="assets/icon.png" width="36" height="36" alt=""><span>PortPanic</span></a>
-    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#questions">Questions</a><a class="nav-download" href="#download">Get PortPanic</a></nav>
+    <a class="brand" href="./" aria-label="PortPanic home"><img src="assets/icon.png" width="32" height="32" alt=""><span>PortPanic</span></a>
+    <nav aria-label="Main navigation"><a href="#try-it" data-section-link>Try it</a><a class="nav-questions" href="#questions" data-section-link>Questions</a><a href="guide.html">User guide</a><a class="nav-release" href="#download" data-section-link>Release status</a></nav>
   </header>
-  <main>
+  <main id="main" tabindex="-1">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">Know when<br>your tether drops.</h1>
-        <p class="intro">Light around your screen. Sound you can hear. A clear alert when your camera disconnects from Capture One.</p>
-        <div id="download" class="download">
-          <a id="download-link" class="button primary" href="https://github.com/austinpresley/PortPanic-Releases/releases">View releases <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 13v4h12v-4"/></svg></a>
-          <p id="download-status">Free for Mac. Public download coming soon.</p>
-          <a class="try-link" id="try-link" href="#try-it">Or pull the plug first.</a>
-        </div>
-        <p class="compatibility">For Capture One 16.x<br>macOS 14 or later. Apple silicon and Intel.</p>
+        <h1 id="hero-title">Know when<br> your tether drops.</h1>
+        <p class="intro">A red glow and a repeating sound when your camera disconnects from Capture One.</p>
+        <div class="hero-actions"><a id="hero-action" class="button primary" href="#try-it" data-section-link>Try the alert</a><a class="secondary-link" href="#download" data-section-link>Release status</a></div>
+        <p id="hero-availability" class="availability"><span class="availability-desktop">Free for Mac. Public download coming soon.</span><span class="availability-mobile">Free for Mac. Download coming soon.</span></p>
       </div>
-      <div class="demo-area" data-plugged="false">
+      <div class="demo-area" id="try-it" data-plugged="true" aria-labelledby="demo-title">
+        <div class="demo-toolbar"><h2 id="demo-title" tabindex="-1">Interactive preview</h2><div class="demo-controls"><button type="button" id="demo-sound" aria-label="Enable preview sound" aria-pressed="false" data-muted="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound off</span></button><button type="button" id="demo-reset"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6a7 7 0 1 1-1 6M4 2v5h5"/></svg>Reset</button></div></div>
         <div class="demo-stage"><span class="demo-ambient" aria-hidden="true"></span>
-        <div class="demo-screen" id="demo-screen" data-state="waiting" data-alert="none" role="group" aria-label="Interactive PortPanic app preview" aria-describedby="demo-caption">
-          <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" id="menu-camera" data-symbol="waiting" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
-          <div class="session-art" aria-hidden="true"><svg viewBox="0 0 520 360"><defs><radialGradient id="paper"><stop stop-color="#dce3e6"/><stop offset="1" stop-color="#8c9da4"/></radialGradient><linearGradient id="vase" x1="0" x2="1"><stop stop-color="#bfada0"/><stop offset=".5" stop-color="#f1e8df"/><stop offset="1" stop-color="#c5b0a0"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="13"/></filter></defs><path fill="url(#paper)" d="M0 0h520v360H0z"/><ellipse cx="282" cy="304" rx="102" ry="17" fill="#4f5a5c" opacity=".28" filter="url(#blur)"/><path d="M255 147c-4 41-36 60-40 100-4 44 29 62 66 62s68-20 62-62c-5-41-36-62-41-100z" fill="url(#vase)"/><ellipse cx="278.5" cy="147" rx="24" ry="6" fill="#89776b"/><path d="M277 148c1-38-4-78-20-104m27 103c1-43 21-75 35-99m-42 65c-37-8-45-28-43-39 24 1 38 17 43 39m14-11c31-3 46-19 49-34-27-3-43 12-49 34m-30-40c-19-3-30-15-30-29 18 3 27 15 30 29m45 13c20 0 33-8 37-20-16-3-29 5-37 20" fill="#64796d" stroke="#64796d" stroke-width="2.5"/></svg></div>
-          <div class="demo-card">
-            <div class="card-top"><span>PortPanic</span><span class="card-tools" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4 4l2 2m8 8 2 2M4 16l2-2m8-8 2-2"/></svg><svg viewBox="0 0 20 20"><path d="M10 2v7m-4-5a7 7 0 1 0 8 0"/></svg></span></div>
-            <div class="camera-name" id="camera-name"><span>No camera</span><span>tethered</span></div>
-            <div class="card-status-row"><span class="status-symbol" id="card-status-symbol" data-symbol="waiting" aria-hidden="true"></span><strong id="card-status-text">Waiting</strong><span class="status-separator" aria-hidden="true"></span><span id="card-source">Capture One <span class="pending-circle" aria-label="pending"></span></span></div>
-            <div class="card-foot" id="card-speed-row" hidden><span>Link Speed</span><strong>5 Gb/s</strong></div>
-            <div class="card-foot" id="card-loss-row" hidden><span id="card-notice"></span><button id="card-dismiss" type="button" data-dismiss-preview>Dismiss</button></div>
+          <div class="demo-screen" id="demo-screen" data-state="connected" data-alert="none" role="group" aria-label="Example PortPanic camera status" aria-describedby="demo-caption">
+            <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" id="menu-camera" data-symbol="connected" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
+            <img class="session-art" src="assets/studio-still-life.jpg" width="1536" height="1024" alt="" fetchpriority="high">
+            <div class="demo-card">
+              <div class="card-top"><span>PortPanic</span><span class="card-tools" aria-hidden="true"><svg class="card-speaker" viewBox="0 0 20 20"><path d="M3 8h4l4-4v12l-4-4H3zM14 7l4 6m0-6-4 6"/></svg><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4 4l2 2m8 8 2 2M4 16l2-2m8-8 2-2"/></svg><svg viewBox="0 0 20 20"><path d="M10 2v7m-4-5a7 7 0 1 0 8 0"/></svg></span></div>
+              <div class="camera-name" id="camera-name"><span>Canon</span><span>EOS R5</span></div>
+              <div class="card-status-row"><span class="status-symbol" id="card-status-symbol" data-symbol="connected" aria-hidden="true"></span><strong id="card-status-text">Connected</strong><span class="status-separator" aria-hidden="true"></span><span id="card-source">Capture One</span></div>
+              <div class="card-foot" id="card-speed-row"><span>Link Speed</span><strong>5 Gb/s</strong></div>
+              <div class="card-foot" id="card-loss-row" hidden><span id="card-notice"></span><button id="card-dismiss" type="button" data-dismiss-preview>Dismiss</button></div>
+            </div>
+            <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
+            <div class="demo-dismiss" id="overlay-dismiss" hidden><div class="dismiss-context"><strong class="dismiss-camera">Canon EOS R5</strong><div class="dismiss-status"><span class="dismiss-symbol" aria-hidden="true">!</span><strong>Lost</strong><span class="dismiss-source">Capture One</span></div></div><div class="dismiss-action"><button type="button" data-dismiss-preview aria-label="Dismiss example alert for Canon EOS R5">Dismiss</button></div></div>
           </div>
-          <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
-          <div class="demo-dismiss" id="overlay-dismiss" hidden>
-            <div class="dismiss-context"><strong class="dismiss-camera">Canon EOS R5</strong><div class="dismiss-status"><span class="dismiss-symbol" aria-hidden="true">!</span><strong>Lost</strong><span class="dismiss-source">Capture One</span></div></div>
-            <div class="dismiss-action"><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert for Canon EOS R5">Dismiss</button></div>
-          </div>
+          <div class="computer-base" aria-hidden="true"></div>
         </div>
-        </div>
-        <div class="tether-panel" id="try-it" data-hint="true" data-dragging="false" data-plugged="false" data-state="waiting" data-pending="false">
-          <span class="tether-eyebrow" id="tether-eyebrow" aria-hidden="true"><span class="live-dot"></span>Try it</span>
-          <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-describedby="demo-caption">
-            <svg class="tether-drawing" viewBox="0 0 600 120" aria-hidden="true">
+        <div class="tether-panel" data-hint="true" data-dragging="false" data-plugged="true" data-state="connected" data-pending="false">
+          <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Unplug example camera by dragging or pressing" aria-describedby="tether-action"><svg class="tether-drawing" viewBox="0 0 600 120" aria-hidden="true">
               <ellipse class="desk-shadow" cx="64" cy="97" rx="50" ry="5"/>
               <ellipse class="desk-shadow plug-shadow" cx="26" cy="91" rx="36" ry="4"/>
               <g class="tether-camera">
@@ -79,31 +73,29 @@
                 <rect class="plug-tip" x="46" y="56" width="16" height="12" rx="5"/>
                 <rect class="plug-line" x="50" y="60" width="9" height="4" rx="2"/>
               </g>
-            </svg>
-            <span class="tether-label"><strong id="tether-action">Drag the plug into the Mac</strong><span id="tether-connection">Or tap the cable to connect</span></span>
-          </button>
+            </svg></button>
+          <div class="tether-actions"><p id="tether-action" aria-live="polite">Pull the plug to try the alert.</p><button type="button" class="button outline" id="tether-action-button">Unplug camera</button></div>
         </div>
-        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Start over</button></div>
-        <p class="demo-caption" id="demo-caption" aria-live="polite">Go on, drag the plug into the Mac. This preview plays the real alert sounds.</p>
+        <p class="demo-caption" id="demo-caption">Example camera. Turn sound on to hear the alert.</p>
         <p class="sound-feedback" id="sound-feedback" role="status"></p>
-        <p class="demo-footnote">Web preview with the menu open. The app's sounds and glow timing.</p>
-        <audio id="loss-audio" src="assets/sounds/swell.wav" preload="auto" loop></audio>
-        <audio id="recovery-audio" src="assets/sounds/bloom.wav" preload="auto"></audio>
+        <audio id="loss-audio" src="assets/sounds/swell.wav" preload="auto" loop></audio><audio id="recovery-audio" src="assets/sounds/bloom.wav" preload="auto"></audio>
       </div>
+      <p class="compatibility">Capture One 16.x required<br>macOS 14 or later. Apple silicon and Intel.</p>
     </section>
     <section id="how-it-works" class="how wrap" aria-labelledby="how-title">
-      <div class="section-intro"><h2 id="how-title">A little backup<br>for your tether.</h2><p>Leave PortPanic in the menu bar. Keep working in Capture One.</p></div>
-      <div class="explanations"><article><span class="event-mark loss-mark" aria-hidden="true"></span><h3>When the camera drops</h3><p>A red glow reaches around your screen and the Loss sound repeats. Dismiss it, or reconnect the camera.</p></article><article><span class="event-mark recovery-mark" aria-hidden="true"></span><h3>When it comes back</h3><p>The red stops. A short green glow and Recovery sound confirm that Capture One sees your camera again.</p></article><article><span class="event-mark quiet-mark" aria-hidden="true"></span><h3>The rest of the time</h3><p>PortPanic stays quiet. It reads the camera list without changing your session, catalog or photographs.</p></article></div>
+      <h2 id="how-title">Two alerts. Then back to quiet.</h2>
+      <div class="alert-pair"><article><div class="alert-sample loss-sample" aria-hidden="true"><img src="assets/studio-still-life.jpg" width="1536" height="1024" alt="" loading="lazy"></div><div><h3>When the camera drops</h3><p>A red glow and a repeating sound. Dismiss the alert, or reconnect your camera.</p></div></article><article><div class="alert-sample recovery-sample" aria-hidden="true"><img src="assets/studio-still-life.jpg" width="1536" height="1024" alt="" loading="lazy"></div><div><h3>When it comes back</h3><p>The red stops. A short green glow and sound confirm that Capture One sees your camera again.</p></div></article></div>
+      <p class="quiet-caption">The rest of the time, PortPanic stays in your menu bar.</p>
     </section>
-    <section class="details wrap"><p>Make it yours.</p><h2>Enough control.<br>Very little to manage.</h2><div class="detail-columns"><p>Choose your sounds, colors, displays and audio output. Adjust the light. Test both alerts without pulling a cable.</p><p>Updates are optional and wait while a camera is being watched. Monitoring stays local. No account, analytics or uploaded shooting data.</p></div></section>
-    <section id="questions" class="questions wrap" aria-labelledby="questions-title"><h2 id="questions-title">A few things to know.</h2><div>
-      <details><summary>Does it work without Capture One?</summary><p>Capture One decides whether your camera is tethered. PortPanic reads its camera list and uses USB events to spot a cable drop sooner. Capture One 16.x is required.</p></details>
-      <details><summary>Will it interrupt what I’m doing?</summary><p>The alert leaves your keyboard focus in the app you’re using. Clicks pass through the screen glow. Only the Dismiss button takes a click.</p></details>
-      <details><summary>What if Capture One is busy or closed?</summary><p>If Capture One stops answering, PortPanic shows the last known status. That health warning alone never sounds a camera alarm. Quitting Capture One or closing your session leaves PortPanic quiet.</p></details>
+    <section class="settings-band" aria-labelledby="settings-title"><div class="settings-layout wrap"><div class="settings-copy"><h2 id="settings-title">Set it up for your shoot.</h2><p>Choose your sounds, colors, displays and audio output. Test both alerts without pulling a cable.</p><p class="privacy">Monitoring stays on your Mac.<br>No account or analytics.</p><p class="update-caption">Automatic update checks are optional.<br>You choose when to install.</p></div><figure class="settings-figure"><button type="button" id="settings-enlarge" aria-label="View PortPanic Settings at full size"><img src="assets/alerts-settings-440.png" width="620" height="708" alt="Native PortPanic Alerts settings with Swell and Bloom sounds, Loss and Recovery previews, and shared light controls." loading="lazy"><span class="image-hint">View Settings</span></button></figure></div></section>
+    <section id="download" class="release wrap" aria-labelledby="release-title"><div><h2 id="release-title" tabindex="-1">PortPanic for Mac</h2><p id="download-status">Free. Public download coming soon.</p><p id="release-detail">Release checks are still in progress.</p></div><div class="release-actions"><a id="download-link" class="button outline" href="https://github.com/austinpresley/PortPanic-Releases/releases">View releases on GitHub</a><a href="guide.html">Read the user guide</a></div></section>
+    <section id="questions" class="questions wrap" aria-labelledby="questions-title"><div><h2 id="questions-title" tabindex="-1">A few things to know.</h2><p class="help-line">Need help? <a href="guide.html">Read the guide</a> or <a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">report a problem</a>.</p></div><div class="question-list">
+      <details><summary>Does it work without Capture One?</summary><p>No. PortPanic reads Capture One's tethered-camera list. USB events can detect a cable drop sooner. Capture One 16.x is required.</p></details>
+      <details><summary>Will it interrupt my work?</summary><p>The alert leaves keyboard focus in the app you are using. Clicks pass through the glow. Only Dismiss takes a click.</p></details>
+      <details><summary>What if Capture One is busy or closed?</summary><p>If Capture One stops answering, PortPanic shows the last known status. That warning alone does not trigger a camera loss alert. Quitting Capture One or closing your session or catalog leaves PortPanic quiet.</p></details>
       <details><summary>What connects to the internet?</summary><p>The updater fetches release information and downloads. Camera monitoring, logs and diagnostic exports stay on your Mac. There is no analytics or system profiling.</p></details>
-      <details><summary>How do I report a problem?</summary><p>Open <a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">a bug report</a> and describe what happened. In PortPanic, Settings, Monitoring, Export Diagnostics saves a report you can review and attach. It can include camera and audio device names, but no image names or session paths.</p></details>
-      <details><summary>Is the public release ready?</summary><p>The download will appear here after release checks are complete. PortPanic is designed for macOS 14 or later on Apple silicon and Intel. Physical camera, installation and supported-Mac verification is still in progress.</p></details>
     </div></section>
   </main>
-  <footer class="footer wrap"><a class="brand" href="./"><img src="assets/icon.png" width="28" height="28" alt=""><span>PortPanic</span></a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p><nav aria-label="Footer"><a href="guide.html">User guide</a><a href="https://github.com/austinpresley/PortPanic-Releases/releases">Releases</a><a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">Report a problem</a></nav></footer>
+  <footer class="footer wrap"><a class="brand" href="./"><img src="assets/icon.png" width="26" height="26" alt=""><span>PortPanic</span></a><p>By Austin Presley</p><nav aria-label="Footer"><a href="guide.html">User guide</a><a href="https://github.com/austinpresley/PortPanic-Releases/releases">Releases</a><a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">Report a problem</a></nav></footer>
+  <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-dialog-title"><div class="image-toolbar"><h2 id="settings-dialog-title">PortPanic Settings</h2><button type="button" id="settings-close">Close</button></div><div class="settings-image-scroll"><img src="assets/alerts-settings-440.png" width="620" height="708" alt="Full native PortPanic Alerts settings window."></div></dialog>
 </body></html>

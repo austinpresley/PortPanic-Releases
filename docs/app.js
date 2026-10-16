@@ -1,10 +1,12 @@
-import { initialState, transition } from "./demo-state.mjs";
-import { cable, clampPlug, dragCrossing, restingX, stepSpring, wirePath } from "./tether-cable.mjs";
+import { initialState, transition } from "./demo-state.mjs?v=redesign-1";
+import { cable, clampPlug, dragCrossing, restingX, stepSpring, wirePath } from "./tether-cable.mjs?v=redesign-1";
+
+import { releaseView } from "./release-view.mjs?v=redesign-1";
 
 const stage = document.querySelector("#demo-screen");
 const stageWrap = document.querySelector(".demo-stage");
 const area = document.querySelector(".demo-area");
-const panel = document.querySelector("#try-it");
+const panel = document.querySelector(".tether-panel");
 const cableButton = document.querySelector("#tether-toggle");
 const drawing = document.querySelector(".tether-drawing");
 const plugGroup = document.querySelector(".tether-plug");
@@ -20,7 +22,7 @@ const layers = {
   compact: document.querySelector(".glow-halo-compact"), expanded: document.querySelector(".glow-halo-expanded")
 };
 let state = initialState();
-let soundEnabled = true;
+let soundEnabled = false;
 let soundFailed = false;
 let motion = null;
 let confirmationTimer;
@@ -32,7 +34,7 @@ for (const audio of [lossAudio, recoveryAudio]) audio.volume = 0.45;
 
 // The plug's position in drawing units. It follows the pointer during a drag
 // and springs to the state's resting place otherwise.
-const plug = { x: cable.restX, velocity: 0, target: cable.restX, dragging: false, pointerId: null,
+const plug = { x: cable.seatedX, velocity: 0, target: cable.seatedX, dragging: false, pointerId: null,
   grabOffset: 0, startClientX: 0, moved: 0, frame: 0, last: 0 };
 let interacted = false;
 let pointerHandledAt = -Infinity;
@@ -55,9 +57,16 @@ function playAlert(role) {
   stopAudio(); soundFailed = false;
   const audio = role === "loss" ? lossAudio : recoveryAudio;
   audio.muted = !soundEnabled;
+  // A blocked or paused player rejoins the active cue instead of restarting it.
+  const elapsed = Math.max(0, (performance.now() - state.epoch) / 1000);
+  if (role === "recovery" && elapsed >= 3) return;
+  try { audio.currentTime = role === "loss" ? elapsed % 2.8 : elapsed; } catch { /* The player can start before metadata arrives. */ }
   const generation = audioGeneration;
   audio.play().then(() => {
-    if (generation !== audioGeneration || state.alert !== role) return;
+    if (generation !== audioGeneration || state.alert !== role) {
+      if (state.alert !== role) audio.pause();
+      return;
+    }
     soundFailed = false; renderSound();
   }).catch(() => {
     if (generation !== audioGeneration) return;
@@ -79,20 +88,24 @@ function primeAudio() {
   }
 }
 function renderSound() {
-  soundButton.setAttribute("aria-label", soundEnabled ? "Mute preview sound" : "Enable preview sound");
+  soundButton.setAttribute("aria-label", soundFailed ? "Try preview sound again" : soundEnabled ? "Mute preview sound" : "Enable preview sound");
+  soundButton.setAttribute("aria-pressed", String(soundEnabled));
   soundButton.querySelector("span").textContent = soundEnabled ? "Sound on" : "Sound off";
   soundButton.dataset.muted = String(!soundEnabled);
+  document.querySelector(".card-speaker").innerHTML = soundEnabled
+    ? '<path d="M3 8h4l4-4v12l-4-4H3zM14 7a5 5 0 0 1 0 6"/>'
+    : '<path d="M3 8h4l4-4v12l-4-4H3zM14 7l4 6m0-6-4 6"/>';
+  caption.textContent = soundEnabled ? "Example camera. Plays PortPanic's Swell and Bloom sounds."
+    : "Example camera. Turn sound on to hear the alert.";
   document.querySelector("#sound-feedback").textContent = soundFailed
-    ? "Sound could not start. Turn sound on to retry. The visual preview still works." : "";
+    ? "Sound could not play. Turn sound on to try again. The visual preview still works." : "";
 }
 function cableLabel() {
-  if (state.pending) return state.connection === "lost"
-    ? ["USB is back", "Lost stays on until Capture One confirms"]
-    : ["Connecting", "Capture One is checking the camera"];
-  if (state.plugged) return ["Now yank it out", "Drag the plug away, or tap the cable"];
-  if (state.connection === "lost") return ["Plug it back in", "Capture One confirms the camera before Recovery"];
-  return interacted ? ["Plug the camera in again", "Drag the plug into the Mac, or tap the cable"]
-    : ["Drag the plug into the Mac", "Or tap the cable to connect"];
+  if (state.pending) return "Checking the example tether in Capture One.";
+  if (state.alert === "recovery") return "Connected again.";
+  if (state.dismissed) return "Alert dismissed. Camera still disconnected.";
+  if (state.connection === "lost") return "Reconnect to see Recovery.";
+  return "Pull the plug to try the alert.";
 }
 function render() {
   stage.dataset.state = state.connection;
@@ -103,10 +116,9 @@ function render() {
   panel.dataset.state = state.connection;
   panel.dataset.pending = String(state.pending);
   panel.dataset.hint = String(!interacted);
-  cableButton.setAttribute("aria-label", state.plugged ? "Unplug camera" : "Plug in camera");
-  const [action, hint] = cableLabel();
-  document.querySelector("#tether-action").textContent = action;
-  document.querySelector("#tether-connection").textContent = hint;
+  cableButton.setAttribute("aria-label", state.plugged ? "Unplug example camera by dragging or pressing" : "Reconnect example camera by dragging or pressing");
+  document.querySelector("#tether-action").textContent = cableLabel();
+  document.querySelector("#tether-action-button").textContent = state.plugged ? "Unplug camera" : "Reconnect camera";
   const title = document.querySelector("#camera-name");
   title.replaceChildren();
   const hasCamera = state.connection !== "waiting" || state.plugged;
@@ -125,17 +137,6 @@ function render() {
   document.querySelector("#card-dismiss").disabled = state.alert !== "loss";
   document.querySelector("#overlay-dismiss").hidden = state.alert !== "loss";
   document.querySelector("#menu-camera").dataset.symbol = state.connection;
-  let message;
-  if (state.paused) message = "Preview paused. Use the cable or Start over to try again.";
-  else if (state.pending) message = state.connection === "lost"
-    ? "USB is back. Lost stays on until Capture One confirms the tether."
-    : "The Mac sees the camera. Waiting for Capture One to confirm the tether.";
-  else if (state.alert === "loss") message = "Camera lost. Swell repeats with the red glow. Plug it back in, or press Dismiss.";
-  else if (state.alert === "recovery") message = "Camera recovered. Loss stops, Bloom plays once and the green glow fades over three seconds.";
-  else if (state.dismissed) message = "Alert dismissed. The camera is still Lost until you plug it back in.";
-  else if (state.connection === "connected") message = "Tethered to Capture One. Now yank the plug out and see what happens.";
-  else message = "Go on, drag the plug into the Mac. This preview plays the real alert sounds.";
-  caption.textContent = message;
   renderSound();
 }
 function sample(values, time, duration) {
@@ -275,12 +276,19 @@ cableButton.addEventListener("click", () => {
   markInteracted();
   toggleCable();
 });
-document.querySelector("#try-link").addEventListener("click", event => {
-  event.preventDefault();
-  panel.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth", block: "center" });
-  cableButton.focus({ preventScroll: true });
-  nudgePlug();
+document.querySelector("#tether-action-button").addEventListener("click", () => {
+  markInteracted(); toggleCable();
 });
+document.querySelectorAll("[data-section-link]").forEach(link => link.addEventListener("click", event => {
+  if (!link.hash || link.origin !== location.origin || link.pathname !== location.pathname) return;
+  const target = document.querySelector(link.hash);
+  if (!target) return;
+  event.preventDefault();
+  target.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth", block: "start" });
+  const heading = target.querySelector('[tabindex="-1"]');
+  heading?.focus({ preventScroll: true });
+  history.replaceState(null, "", link.hash);
+}));
 
 function dispatch(action) {
   const previous = state;
@@ -297,6 +305,10 @@ function dispatch(action) {
   }
   if (action.type === "reset" || action.type === "pause") {
     clearTimeout(confirmationTimer); clearTimeout(expiryTimer); stopAudio();
+    soundEnabled = false; audioPrimed = false;
+    for (const audio of [lossAudio, recoveryAudio]) audio.muted = true;
+    plug.dragging = false; plug.pointerId = null; panel.dataset.dragging = "false";
+    clearTimeout(nudgeTimer); clearTimeout(leanTimer);
   }
   if (action.type === "reset") { interacted = false; scheduleNudge(1800); }
   render(); drawGlow(); settlePlug();
@@ -314,23 +326,43 @@ soundButton.addEventListener("click", () => {
   renderSound();
 });
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) { dispatch({ type: "pause" }); clearTimeout(nudgeTimer); } else scheduleNudge();
+  if (document.hidden) dispatch({ type: "pause" }); else if (visible) dispatch({ type: "resume" });
 });
 window.addEventListener("pagehide", () => dispatch({ type: "pause" }));
 new IntersectionObserver(entries => {
   visible = entries[0].isIntersecting;
-  if (!visible && (state.alert || state.pending)) dispatch({ type: "pause" });
-  if (visible) scheduleNudge(); else clearTimeout(nudgeTimer);
+  if (!visible) dispatch({ type: "pause" });
+  else if (!document.hidden) dispatch({ type: "resume" });
 }, { threshold: 0 }).observe(area);
 motionPreference.addEventListener("change", () => { drawGlow(); settlePlug(); scheduleNudge(); });
 new ResizeObserver(() => stage.style.setProperty("--glow-size", `${Math.max(6, Math.min(14, stage.clientWidth * 28 / 1280))}px`)).observe(stage);
 motionReady.then(() => { if (state.alert) drawGlow(); });
 render(); drawGlow(); drawPlug(); scheduleNudge(1600);
 
-fetch("release.json", { cache: "no-cache" }).then(response => response.ok ? response.json() : null).then(release => {
-  if (!release || !release.available || !/^https:\/\/github\.com\/austinpresley\/PortPanic-Releases\/releases\/download\//.test(release.url)) return;
+const settingsDialog = document.querySelector("#settings-dialog");
+const settingsOpener = document.querySelector("#settings-enlarge");
+settingsOpener.addEventListener("click", () => {
+  dispatch({ type: "pause" });
+  settingsDialog.showModal();
+  document.querySelector("#settings-close").focus();
+});
+document.querySelector("#settings-close").addEventListener("click", () => settingsDialog.close());
+settingsDialog.addEventListener("close", () => settingsOpener.focus({ preventScroll: true }));
+settingsDialog.addEventListener("click", event => { if (event.target === settingsDialog) settingsDialog.close(); });
+
+function showRelease(metadata) {
+  const release = releaseView(metadata);
   const link = document.querySelector("#download-link");
-  link.href = release.url;
-  link.firstChild.textContent = "Download for Mac ";
-  document.querySelector("#download-status").textContent = `Free. Version ${release.version}. ${release.size || "Signed and notarized."}`;
-}).catch(() => {});
+  link.href = release.href; link.textContent = release.action;
+  document.querySelector("#download-status").textContent = release.status.replace("Free for Mac.", "Free.");
+  document.querySelector("#release-detail").textContent = release.detail;
+  document.querySelector(".availability-desktop").textContent = release.status;
+  document.querySelector(".availability-mobile").textContent = release.available ? release.status : "Free for Mac. Download coming soon.";
+  if (release.available) {
+    const hero = document.querySelector("#hero-action");
+    hero.href = release.href; hero.textContent = release.action;
+  }
+}
+showRelease(null);
+fetch("release.json", { cache: "no-cache" }).then(response => response.ok ? response.json() : null)
+  .then(showRelease).catch(() => showRelease(null));

@@ -1,5 +1,5 @@
 export function initialState() {
-  return { plugged: false, connection: "waiting", alert: null, dismissed: false,
+  return { plugged: true, connection: "connected", alert: null, dismissed: false,
     pending: false, generation: 0, epoch: 0, paused: false };
 }
 
@@ -26,9 +26,9 @@ export function transition(state, action, now = 0) {
       return state.alert === "recovery" && action.epoch === state.epoch
         ? { ...state, alert: null } : state;
     case "pause":
-      return { ...state, connection: state.plugged ? "connected" : state.connection,
-        alert: null, pending: false, dismissed: !state.plugged && state.connection === "lost",
-        generation: state.generation + 1, paused: true };
+      return { ...initialState(), generation: state.generation + 1, paused: true };
+    case "resume":
+      return state.paused ? { ...state, paused: false } : state;
     case "reset":
       return { ...initialState(), generation: state.generation + 1 };
     default:
