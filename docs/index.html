@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PortPanic is a free Mac menu bar app that makes a dropped Capture One camera tether hard to miss.">
+  <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
+  <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
+  <title>PortPanic | Camera tether alerts for Capture One</title>
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header wrap">
+    <a class="brand" href="./" aria-label="PortPanic home"><img src="assets/icon.png" width="36" height="36" alt=""><span>PortPanic</span></a>
+    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#questions">Questions</a><a class="nav-download" href="#download">Get PortPanic</a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Know when<br>your tether drops.</h1>
+        <p class="intro">Light around your screen. Sound you can hear. A clear alert when your camera disconnects from Capture One.</p>
+        <div id="download" class="download">
+          <a id="download-link" class="button primary" href="https://github.com/austinpresley/PortPanic-Releases/releases">View releases <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 13v4h12v-4"/></svg></a>
+          <p id="download-status">Free for Mac. Public download coming soon.</p>
+        </div>
+        <p class="compatibility">For Capture One 16.x<br>macOS 14 or later. Apple silicon and Intel.</p>
+      </div>
+      <div class="demo-area">
+        <div class="demo-screen" id="demo-screen" data-state="connected" role="img" aria-label="Illustrated Mac screen with PortPanic showing a tethered Canon EOS R5">
+          <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
+          <div class="session-art" aria-hidden="true"><svg viewBox="0 0 520 360"><defs><radialGradient id="paper"><stop stop-color="#dce3e6"/><stop offset="1" stop-color="#8c9da4"/></radialGradient><linearGradient id="vase" x1="0" x2="1"><stop stop-color="#bfada0"/><stop offset=".5" stop-color="#f1e8df"/><stop offset="1" stop-color="#c5b0a0"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="13"/></filter></defs><path fill="url(#paper)" d="M0 0h520v360H0z"/><ellipse cx="282" cy="304" rx="102" ry="17" fill="#4f5a5c" opacity=".28" filter="url(#blur)"/><path d="M255 147c-4 41-36 60-40 100-4 44 29 62 66 62s68-20 62-62c-5-41-36-62-41-100z" fill="url(#vase)"/><ellipse cx="278.5" cy="147" rx="24" ry="6" fill="#89776b"/><path d="M277 148c1-38-4-78-20-104m27 103c1-43 21-75 35-99m-42 65c-37-8-45-28-43-39 24 1 38 17 43 39m14-11c31-3 46-19 49-34-27-3-43 12-49 34m-30-40c-19-3-30-15-30-29 18 3 27 15 30 29m45 13c20 0 33-8 37-20-16-3-29 5-37 20" fill="#64796d" stroke="#64796d" stroke-width="2.5"/></svg></div>
+          <div class="demo-card"><div class="card-top"><span id="card-status"><i></i> Connected</span><svg aria-hidden="true" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4 4l2 2m8 8 2 2M4 16l2-2m8-8 2-2"/></svg></div><div class="camera-name">Canon<br>EOS R5</div><div class="card-foot"><span id="card-detail">Tethered to Capture One</span><span id="card-speed">5 Gb/s</span></div></div>
+          <div class="edge-light" aria-hidden="true"></div>
+          <div class="demo-dismiss" aria-hidden="true"><span>Canon EOS R5 <small>Lost</small></span><span class="fake-button">Dismiss</span></div>
+        </div>
+        <div class="demo-controls"><span>Try the alert</span><div role="group" aria-label="Preview an alert"><button type="button" data-alert="loss">Loss</button><button type="button" data-alert="recovery">Recovery</button><button type="button" data-alert="connected" aria-label="Reset preview">Reset</button></div></div>
+        <p class="demo-caption" id="demo-caption" aria-live="polite">An illustration of the app. This preview stays silent.</p>
+      </div>
+    </section>
+    <section id="how-it-works" class="how wrap" aria-labelledby="how-title">
+      <div class="section-intro"><h2 id="how-title">A little backup<br>for your tether.</h2><p>Leave PortPanic in the menu bar. Keep working in Capture One.</p></div>
+      <div class="explanations"><article><span class="event-mark loss-mark" aria-hidden="true"></span><h3>When the camera drops</h3><p>A red glow reaches around your screen and the Loss sound repeats. Dismiss it, or reconnect the camera.</p></article><article><span class="event-mark recovery-mark" aria-hidden="true"></span><h3>When it comes back</h3><p>The red stops. A short green glow and Recovery sound confirm that Capture One sees your camera again.</p></article><article><span class="event-mark quiet-mark" aria-hidden="true"></span><h3>The rest of the time</h3><p>PortPanic stays quiet. It reads the camera list without changing your session, catalog or photographs.</p></article></div>
+    </section>
+    <section class="details wrap"><p>Make it yours.</p><h2>Enough control.<br>Very little to manage.</h2><div class="detail-columns"><p>Choose your sounds, colors, displays and audio output. Adjust the light. Test both alerts without pulling a cable.</p><p>Updates are optional and wait while a camera is being watched. Monitoring stays local. No account, analytics or uploaded shooting data.</p></div></section>
+    <section id="questions" class="questions wrap" aria-labelledby="questions-title"><h2 id="questions-title">A few things to know.</h2><div>
+      <details><summary>Does it work without Capture One?</summary><p>Capture One decides whether your camera is tethered. PortPanic reads its camera list and uses USB events to spot a cable drop sooner. Capture One 16.x is required.</p></details>
+      <details><summary>Will it interrupt what I’m doing?</summary><p>The alert leaves your keyboard focus in the app you’re using. Clicks pass through the screen glow. Only the Dismiss button takes a click.</p></details>
+      <details><summary>What if Capture One is busy or closed?</summary><p>If Capture One stops answering, PortPanic shows the last known status. That health warning alone never sounds a camera alarm. Quitting Capture One or closing your session leaves PortPanic quiet.</p></details>
+      <details><summary>What connects to the internet?</summary><p>The updater fetches release information and downloads. Camera monitoring, logs and diagnostic exports stay on your Mac. There is no analytics or system profiling.</p></details>
+      <details><summary>How do I report a problem?</summary><p>Open <a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">a bug report</a> and describe what happened. In PortPanic, Settings, Monitoring, Export Diagnostics saves a report you can review and attach. It can include camera and audio device names, but no image names or session paths.</p></details>
+      <details><summary>Is the public release ready?</summary><p>The download will appear here after release checks are complete. PortPanic is designed for macOS 14 or later on Apple silicon and Intel. Physical camera, installation and supported-Mac verification is still in progress.</p></details>
+    </div></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="./"><img src="assets/icon.png" width="28" height="28" alt=""><span>PortPanic</span></a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p><nav aria-label="Footer"><a href="guide.html">User guide</a><a href="https://github.com/austinpresley/PortPanic-Releases/releases">Releases</a><a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">Report a problem</a></nav></footer>
+</body></html>

@@ -1,0 +1,27 @@
+name: Bug report
+description: Tell us what went wrong with PortPanic.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+      description: What did PortPanic do, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How can we reproduce it?
+      description: Steps, how often it happens, and any useful details.
+  - type: input
+    id: setup
+    attributes:
+      label: Your setup
+      description: PortPanic version, macOS, Capture One, camera and cable or hub.
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics or screenshots
+      description: Optional. In Settings, Monitoring, choose Export Diagnostics. Review the file before attaching it here. It can include camera and audio device names. This issue and attachments are public.
