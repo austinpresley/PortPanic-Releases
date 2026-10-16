@@ -1,11 +1,10 @@
 {
   "available": true,
   "version": "3.0.0",
-  "build": "441",
-  "url": "https://github.com/austinpresley/PortPanic-Releases/releases/download/v3.0.0-beta.1-441/PortPanic-3.0.0-441-beta-installer2.dmg",
+  "build": "443",
+  "url": "https://github.com/austinpresley/PortPanic-Releases/releases/download/v3.0.0-beta.2-443/PortPanic-3.0.0-443-beta.dmg",
   "channel": "beta",
   "size": "8.0 MB",
-  "sha256": "b8d48084d8566d39a40578726d7512272561b4c8508c54ae46ccbc52032b98c2",
-  "betaNumber": 1,
-  "packagingRevision": 2
+  "sha256": "5993924c6bed0d736782094774723689059e16d60270d6182a9e60423a8bdc58",
+  "betaNumber": 2
 }
