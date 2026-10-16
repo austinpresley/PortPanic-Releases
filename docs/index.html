@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
   <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
-  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=appearance-2">
-  <script type="module" src="app.js?v=tether-1"></script>
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=cable-1">
+  <script type="module" src="app.js?v=cable-1"></script>
 </head>
 <body>
   <header class="header wrap">
@@ -22,10 +22,12 @@
         <div id="download" class="download">
           <a id="download-link" class="button primary" href="https://github.com/austinpresley/PortPanic-Releases/releases">View releases <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-4-4 4 4 4-4M4 13v4h12v-4"/></svg></a>
           <p id="download-status">Free for Mac. Public download coming soon.</p>
+          <a class="try-link" id="try-link" href="#try-it">Or pull the plug first.</a>
         </div>
         <p class="compatibility">For Capture One 16.x<br>macOS 14 or later. Apple silicon and Intel.</p>
       </div>
       <div class="demo-area" data-plugged="false">
+        <div class="demo-stage"><span class="demo-ambient" aria-hidden="true"></span>
         <div class="demo-screen" id="demo-screen" data-state="waiting" data-alert="none" role="group" aria-label="Interactive PortPanic app preview" aria-describedby="demo-caption">
           <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" id="menu-camera" data-symbol="waiting" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
           <div class="session-art" aria-hidden="true"><svg viewBox="0 0 520 360"><defs><radialGradient id="paper"><stop stop-color="#dce3e6"/><stop offset="1" stop-color="#8c9da4"/></radialGradient><linearGradient id="vase" x1="0" x2="1"><stop stop-color="#bfada0"/><stop offset=".5" stop-color="#f1e8df"/><stop offset="1" stop-color="#c5b0a0"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="13"/></filter></defs><path fill="url(#paper)" d="M0 0h520v360H0z"/><ellipse cx="282" cy="304" rx="102" ry="17" fill="#4f5a5c" opacity=".28" filter="url(#blur)"/><path d="M255 147c-4 41-36 60-40 100-4 44 29 62 66 62s68-20 62-62c-5-41-36-62-41-100z" fill="url(#vase)"/><ellipse cx="278.5" cy="147" rx="24" ry="6" fill="#89776b"/><path d="M277 148c1-38-4-78-20-104m27 103c1-43 21-75 35-99m-42 65c-37-8-45-28-43-39 24 1 38 17 43 39m14-11c31-3 46-19 49-34-27-3-43 12-49 34m-30-40c-19-3-30-15-30-29 18 3 27 15 30 29m45 13c20 0 33-8 37-20-16-3-29 5-37 20" fill="#64796d" stroke="#64796d" stroke-width="2.5"/></svg></div>
@@ -42,18 +44,47 @@
             <div class="dismiss-action"><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert for Canon EOS R5">Dismiss</button></div>
           </div>
         </div>
-        <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-describedby="demo-caption">
-          <svg class="tether-drawing" viewBox="0 0 390 72" aria-hidden="true">
-            <g class="tether-camera"><path d="M20 25h12l4-7h19l4 7h12v30H20Z"/><circle cx="45" cy="40" r="11"/><circle cx="45" cy="40" r="6"/><path d="M23 29h8"/></g>
-            <path class="wire" d="M72 40h104m39 0h90"/>
-            <g class="tether-plug"><rect class="plug-body" x="170" y="29" width="25" height="22" rx="5"/><path class="plug-tip" d="M195 33h12v14h-12z"/><path class="plug-line" d="M200 35v10"/></g>
-            <rect class="tether-socket" x="208" y="30" width="7" height="20" rx="2"/>
-            <g class="tether-mac"><rect x="306" y="17" width="58" height="39" rx="4"/><path d="M301 60h68m-60-8h52"/></g>
-          </svg>
-          <span class="tether-label"><strong id="tether-action">Plug in camera</strong><span id="tether-connection">Cable disconnected</span></span>
-        </button>
-        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Reset demo</button></div>
-        <p class="demo-caption" id="demo-caption" aria-live="polite">Plug in the camera to start. This interactive preview uses sound.</p>
+        </div>
+        <div class="tether-panel" id="try-it" data-hint="true" data-dragging="false" data-plugged="false" data-state="waiting" data-pending="false">
+          <span class="tether-eyebrow" id="tether-eyebrow" aria-hidden="true"><span class="live-dot"></span>Try it</span>
+          <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-describedby="demo-caption">
+            <svg class="tether-drawing" viewBox="0 0 600 120" aria-hidden="true">
+              <ellipse class="desk-shadow" cx="64" cy="97" rx="50" ry="5"/>
+              <ellipse class="desk-shadow plug-shadow" cx="26" cy="91" rx="36" ry="4"/>
+              <g class="tether-camera">
+                <path class="camera-body" d="M26 36h12l5-10h28l5 10h26a8 8 0 0 1 8 8v36a8 8 0 0 1-8 8H26a8 8 0 0 1-8-8V44a8 8 0 0 1 8-8Z"/>
+                <rect class="camera-grip" x="24" y="46" width="10" height="34" rx="3"/>
+                <circle class="camera-ring" cx="62" cy="63" r="21"/>
+                <circle class="camera-lens" cx="62" cy="63" r="18"/>
+                <circle class="camera-glass" cx="62" cy="63" r="11"/>
+                <circle class="camera-glint" cx="57" cy="58" r="3"/>
+                <circle class="camera-shutter" cx="36" cy="31" r="3"/>
+                <circle class="camera-led" cx="98" cy="48" r="3.2"/>
+                <rect class="camera-port" x="106" y="56" width="6" height="12" rx="1.5"/>
+              </g>
+              <path class="wire" d="M112 62C156.1 88.8 179.9 88.8 224 62"/>
+              <g class="tether-mac">
+                <ellipse class="desk-shadow" cx="540" cy="95" rx="62" ry="4"/>
+                <path class="mac-base" d="M490 40h110v46H490a14 14 0 0 1-14-14V54a14 14 0 0 1 14-14Z"/>
+                <path class="mac-line" d="M502 47h98"/>
+                <path class="mac-foot" d="M506 86h94v3h-94z"/>
+                <circle class="port-ring" cx="483" cy="62" r="15"/>
+                <rect class="port-slot" x="476" y="55" width="16" height="14" rx="6"/>
+                <rect class="port-inner" x="479" y="59" width="10" height="6" rx="3"/>
+              </g>
+              <g class="tether-plug">
+                <rect class="plug-relief" x="-12" y="55" width="14" height="14" rx="4"/>
+                <rect class="plug-body" x="0" y="48" width="46" height="28" rx="7"/>
+                <path class="plug-ridge" d="M11 55v14M17 55v14"/>
+                <rect class="plug-tip" x="46" y="56" width="16" height="12" rx="5"/>
+                <rect class="plug-line" x="50" y="60" width="9" height="4" rx="2"/>
+              </g>
+            </svg>
+            <span class="tether-label"><strong id="tether-action">Drag the plug into the Mac</strong><span id="tether-connection">Or tap the cable to connect</span></span>
+          </button>
+        </div>
+        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Start over</button></div>
+        <p class="demo-caption" id="demo-caption" aria-live="polite">Go on, drag the plug into the Mac. This preview plays the real alert sounds.</p>
         <p class="sound-feedback" id="sound-feedback" role="status"></p>
         <p class="demo-footnote">Web preview with the menu open. The app's sounds and glow timing.</p>
         <audio id="loss-audio" src="assets/sounds/swell.wav" preload="auto" loop></audio>
