@@ -1,8 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PortPanic user guide</title><link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css"></head><body><header class="header wrap"><a class="brand" href="./"><img src="assets/icon.png" width="36" height="36" alt="">PortPanic</a><nav><a href="./#download">Get PortPanic</a></nav></header><main class="guide wrap"><h1>PortPanic user guide</h1>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PortPanic user guide</title><link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css"></head><body><header class="header wrap"><a class="brand" href="./"><img src="assets/icon.png" width="36" height="36" alt="">PortPanic</a><nav><a href="./#download">Get PortPanic</a></nav></header><main class="guide wrap"><h1 id="portpanic-user-guide">PortPanic user guide</h1>
 <p>PortPanic watches the camera tethered to Capture One and warns you when it
 drops. This guide covers setup, the alerts, every setting and what to do when
 something looks wrong.</p>
-<h2>Install</h2>
+<h2 id="install">Install</h2>
 <ol>
 <li>Download the latest DMG from the
    <a href="https://austinpresley.github.io/PortPanic-Releases/#download">Releases page</a>.</li>
@@ -10,7 +10,7 @@ something looks wrong.</p>
 <li>Eject the DMG and open PortPanic from Applications.</li>
 </ol>
 <p>Keep one copy of PortPanic, in Applications. Do not run it from the DMG.</p>
-<h2>Find the menu bar icon</h2>
+<h2 id="find-the-menu-bar-icon">Find the menu bar icon</h2>
 <p>PortPanic has no Dock icon. It lives in the menu bar as a camera. Click it to see
 the camera state, Dismiss an alert, open Settings (gear) or quit (power).
 Settings and Quit are the small icons at the top. Command-comma opens Settings
@@ -19,7 +19,7 @@ Return or Space activates it. Escape or clicking outside closes the card.</p>
 <p>On a MacBook with a notch, a crowded menu bar can hide the icon behind the
 notch. A menu bar manager can hide it too. If you cannot see it, open
 PortPanic again from Applications. It shows the Settings window.</p>
-<h2>First run and Capture One access</h2>
+<h2 id="first-run-and-capture-one-access">First run and Capture One access</h2>
 <ol>
 <li>Open Capture One with a session or catalog.</li>
 <li>PortPanic opens Settings, Monitoring and asks to read Capture One's list of
@@ -35,10 +35,10 @@ whether Settings is open or not.</p>
 Automation. Find PortPanic and turn on Capture One. The Open System Settings
 button in Settings, Monitoring takes you there. PortPanic checks again on its
 own.</p>
-<h3>Launch at login</h3>
+<h3 id="launch-at-login">Launch at login</h3>
 <p>Launch at login is off by default. Turn it on so PortPanic is running every
 time you shoot: Settings, Monitoring, Startup, Launch at login.</p>
-<h2>What the menu says</h2>
+<h2 id="what-the-menu-says">What the menu says</h2>
 <p>Recognized camera names put the brand above the model, such as Canon above
 EOS R5. Other names wrap naturally; the full original name remains accessible.</p>
 <table>
@@ -81,8 +81,8 @@ One indicator means it has not confirmed a tether. This can appear in Waiting
 or Lost. Reconnecting USB alone does not clear Lost. Unknown or ambiguous USB
 information is left unconfirmed. Additional cameras and their roles remain
 available by scrolling the card.</p>
-<h2>The alerts</h2>
-<h3>Loss Alert</h3>
+<h2 id="the-alerts">The alerts</h2>
+<h3 id="loss-alert">Loss Alert</h3>
 <p>When a tethered camera drops, a red glow appears around your screen edges and
 the Loss sound loops. Clicks pass through the glow to the apps underneath, and
 your keyboard focus stays where it was. Only the Dismiss button takes a click.</p>
@@ -98,11 +98,11 @@ If you use two cameras and the second one also drops, you get a new alert.</p>
 <p>You can also dismiss from the keyboard. In Settings, Advanced, turn on Return /
 Enter or record your own shortcut. These keys only act while a Loss Alert is
 showing. The rest of the time they work as usual.</p>
-<h3>Recovery Alert</h3>
+<h3 id="recovery-alert">Recovery Alert</h3>
 <p>When a camera is tethered again, the glow turns green, the Recovery sound plays
 once and the glow fades out over three seconds. The menu returns to Connected.
 To skip it, turn off Recovery Alert in Settings, Alerts.</p>
-<h2>Test the alerts</h2>
+<h2 id="test-the-alerts">Test the alerts</h2>
 <p>Open Settings and go to Alerts. The Loss and Recovery previews loop silently
 side by side, or stacked in a narrow window.</p>
 <ul>
@@ -115,8 +115,8 @@ side by side, or stacked in a narrow window.</p>
 </ul>
 <p>Tests do not change the camera state. A real alert always takes priority. Run a
 test after you change displays, speakers or settings.</p>
-<h2>Settings reference</h2>
-<h3>Alerts</h3>
+<h2 id="settings-reference">Settings reference</h2>
+<h3 id="alerts">Alerts</h3>
 <ul>
 <li><strong>Displays.</strong> Where the glow appears: All Displays (default), Main
   Display, or Capture One Display. Capture One Display uses the display showing
@@ -141,7 +141,7 @@ test after you change displays, speakers or settings.</p>
   Intensity, colors, Recovery Alert, sounds and Volume. Your detection,
   Dismiss, audio output, login and Capture One access settings are kept.</li>
 </ul>
-<h3>Monitoring</h3>
+<h3 id="monitoring">Monitoring</h3>
 <ul>
 <li><strong>Capture One access.</strong> Shows whether access is allowed, with Allow Capture
   One and Open System Settings when it is not.</li>
@@ -154,7 +154,7 @@ test after you change displays, speakers or settings.</p>
   paths. Nothing is uploaded.</li>
 <li><strong>Startup.</strong> Launch at login.</li>
 </ul>
-<h3>Advanced</h3>
+<h3 id="advanced">Advanced</h3>
 <ul>
 <li><strong>Dismiss shortcuts.</strong> Record a shortcut that includes Command or Control
   (Option and Shift can be added), or turn on Use Return or Enter to dismiss.
@@ -170,7 +170,7 @@ test after you change displays, speakers or settings.</p>
   PortPanic confirms a drop with two Capture One checks in a row and Link Speed
   is not shown.</li>
 </ul>
-<h2>Things to know</h2>
+<h2 id="things-to-know">Things to know</h2>
 <ul>
 <li>If your Mac is muted or its output volume is very low, Settings and the menu
   warn you. A Loss would be silent or hard to hear.</li>
@@ -182,7 +182,7 @@ test after you change displays, speakers or settings.</p>
 <li>If Capture One is busy or frozen, PortPanic shows Last known and waits. It
   does not sound the alarm for that either.</li>
 </ul>
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 <p><strong>The menu says Capture One access is needed.</strong> Open System Settings, Privacy &amp;
 Security, Automation. Find PortPanic and turn on Capture One. PortPanic checks
 again on its own.</p>
@@ -204,7 +204,7 @@ show Settings. See <a href="#find-the-menu-bar-icon">Find the menu bar icon</a>.
 <p>If none of this helps, report it on
 <a href="https://github.com/austinpresley/PortPanic-Releases/issues">GitHub Issues</a> and attach
 the file from Settings, Monitoring, Export Diagnostics.</p>
-<h2>Update</h2>
+<h2 id="update">Update</h2>
 <p>Open Settings, Monitoring and choose Check for Updates. Turn on Check for
 updates automatically for daily checks. This is off by default. You always
 choose when to install. Update checks, prompts and installation wait while a
@@ -220,7 +220,7 @@ update window. Choose Check for Updates to review and install it.</p>
 <li>Open PortPanic and run a quick Test Loss Alert.</li>
 </ol>
 <p>Your settings and Capture One access are kept.</p>
-<h2>Uninstall</h2>
+<h2 id="uninstall">Uninstall</h2>
 <ol>
 <li>Turn off Launch at login in Settings, Monitoring.</li>
 <li>Quit PortPanic from its menu.</li>
@@ -233,7 +233,7 @@ tccutil reset AppleEvents com.apresley.PortPanic
 </code></pre>
 <p>The first command removes saved settings. The second removes the Capture One
 access permission.</p>
-<h2>Privacy</h2>
+<h2 id="privacy">Privacy</h2>
 <p>PortPanic uses the network only for update checks, release notes and downloads.
 It has no analytics, system profiling or account. Logs stay on your
 Mac in <code>~/Library/Logs/PortPanic</code>. They include camera names and timings. They
