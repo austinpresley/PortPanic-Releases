@@ -7,7 +7,7 @@
   <meta property="og:description" content="A small Mac app. An unmistakable tether alert.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
   <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script type="module" src="app.js"></script>
 </head>
 <body>
   <header class="header wrap">
@@ -25,16 +25,36 @@
         </div>
         <p class="compatibility">For Capture One 16.x<br>macOS 14 or later. Apple silicon and Intel.</p>
       </div>
-      <div class="demo-area">
-        <div class="demo-screen" id="demo-screen" data-state="connected" role="img" aria-label="Illustrated Mac screen with PortPanic showing a tethered Canon EOS R5">
-          <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
+      <div class="demo-area" data-plugged="false">
+        <div class="demo-screen" id="demo-screen" data-state="waiting" data-alert="none" role="group" aria-label="Interactive PortPanic app preview" aria-describedby="demo-caption">
+          <div class="screen-menu"><span class="menu-apple" aria-hidden="true">●</span><span>Capture One</span><span class="menu-camera" id="menu-camera" data-symbol="waiting" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 9.5 3h5L16 6h4v13H4V6Z"/><circle cx="12" cy="12" r="4"/></svg></span></div>
           <div class="session-art" aria-hidden="true"><svg viewBox="0 0 520 360"><defs><radialGradient id="paper"><stop stop-color="#dce3e6"/><stop offset="1" stop-color="#8c9da4"/></radialGradient><linearGradient id="vase" x1="0" x2="1"><stop stop-color="#bfada0"/><stop offset=".5" stop-color="#f1e8df"/><stop offset="1" stop-color="#c5b0a0"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="13"/></filter></defs><path fill="url(#paper)" d="M0 0h520v360H0z"/><ellipse cx="282" cy="304" rx="102" ry="17" fill="#4f5a5c" opacity=".28" filter="url(#blur)"/><path d="M255 147c-4 41-36 60-40 100-4 44 29 62 66 62s68-20 62-62c-5-41-36-62-41-100z" fill="url(#vase)"/><ellipse cx="278.5" cy="147" rx="24" ry="6" fill="#89776b"/><path d="M277 148c1-38-4-78-20-104m27 103c1-43 21-75 35-99m-42 65c-37-8-45-28-43-39 24 1 38 17 43 39m14-11c31-3 46-19 49-34-27-3-43 12-49 34m-30-40c-19-3-30-15-30-29 18 3 27 15 30 29m45 13c20 0 33-8 37-20-16-3-29 5-37 20" fill="#64796d" stroke="#64796d" stroke-width="2.5"/></svg></div>
-          <div class="demo-card"><div class="card-top"><span id="card-status"><i></i> Connected</span><svg aria-hidden="true" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4 4l2 2m8 8 2 2M4 16l2-2m8-8 2-2"/></svg></div><div class="camera-name">Canon<br>EOS R5</div><div class="card-foot"><span id="card-detail">Tethered to Capture One</span><span id="card-speed">5 Gb/s</span></div></div>
-          <div class="edge-light" aria-hidden="true"></div>
-          <div class="demo-dismiss" aria-hidden="true"><span>Canon EOS R5 <small>Lost</small></span><span class="fake-button">Dismiss</span></div>
+          <div class="demo-card">
+            <div class="card-top"><span>PortPanic</span><span class="card-tools" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="M10 2v2m0 12v2M2 10h2m12 0h2M4 4l2 2m8 8 2 2M4 16l2-2m8-8 2-2"/></svg><svg viewBox="0 0 20 20"><path d="M10 2v7m-4-5a7 7 0 1 0 8 0"/></svg></span></div>
+            <div class="camera-name" id="camera-name"><span>No camera</span><span>tethered</span></div>
+            <div class="card-status-row"><span class="status-symbol" id="card-status-symbol" data-symbol="waiting" aria-hidden="true"></span><strong id="card-status-text">Waiting</strong><span class="status-separator" aria-hidden="true"></span><span id="card-source">Capture One <span class="pending-circle" aria-label="pending"></span></span></div>
+            <div class="card-foot" id="card-speed-row" hidden><span>Link Speed</span><strong>5 Gb/s</strong></div>
+            <div class="card-foot" id="card-loss-row" hidden><span id="card-notice"></span><button id="card-dismiss" type="button" data-dismiss-preview>Dismiss</button></div>
+          </div>
+          <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
+          <div class="demo-dismiss" id="overlay-dismiss" hidden><span>Lost: Canon EOS R5</span><button type="button" data-dismiss-preview aria-label="Dismiss full-screen preview alert">Dismiss</button></div>
         </div>
-        <div class="demo-controls"><span>Try the alert</span><div role="group" aria-label="Preview an alert"><button type="button" data-alert="loss">Loss</button><button type="button" data-alert="recovery">Recovery</button><button type="button" data-alert="connected" aria-label="Reset preview">Reset</button></div></div>
-        <p class="demo-caption" id="demo-caption" aria-live="polite">An illustration of the app. This preview stays silent.</p>
+        <button type="button" class="tether-toggle" id="tether-toggle" aria-label="Plug in camera" aria-pressed="false" aria-describedby="demo-caption">
+          <svg class="tether-drawing" viewBox="0 0 390 72" aria-hidden="true">
+            <g class="tether-camera"><path d="M20 25h12l4-7h19l4 7h12v30H20Z"/><circle cx="45" cy="40" r="11"/><circle cx="45" cy="40" r="6"/><path d="M23 29h8"/></g>
+            <path class="wire" d="M72 40h104m39 0h90"/>
+            <g class="tether-plug"><rect class="plug-body" x="170" y="29" width="25" height="22" rx="5"/><path class="plug-tip" d="M195 33h12v14h-12z"/><path class="plug-line" d="M200 35v10"/></g>
+            <rect class="tether-socket" x="208" y="30" width="7" height="20" rx="2"/>
+            <g class="tether-mac"><rect x="306" y="17" width="58" height="39" rx="4"/><path d="M301 60h68m-60-8h52"/></g>
+          </svg>
+          <span class="tether-label"><strong id="tether-action">Plug in camera</strong><span id="tether-connection">Cable disconnected</span></span>
+        </button>
+        <div class="demo-controls"><button type="button" id="demo-sound" aria-label="Mute preview sound" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h4l4-4v12l-4-4H3z"/><path class="sound-waves" d="M14 7a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/><path class="sound-slash" d="m14 7 4 6m0-6-4 6"/></svg><span>Sound on</span></button><button type="button" id="demo-reset">Reset demo</button></div>
+        <p class="demo-caption" id="demo-caption" aria-live="polite">Plug in the camera to start. This interactive preview uses sound.</p>
+        <p class="sound-feedback" id="sound-feedback" role="status"></p>
+        <p class="demo-footnote">Web preview. Uses the app's Swell and Bloom sounds and glow timing.</p>
+        <audio id="loss-audio" src="assets/sounds/swell.wav" preload="auto" loop></audio>
+        <audio id="recovery-audio" src="assets/sounds/bloom.wav" preload="auto"></audio>
       </div>
     </section>
     <section id="how-it-works" class="how wrap" aria-labelledby="how-title">
