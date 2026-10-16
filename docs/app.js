@@ -3,6 +3,8 @@ import { cable, clampPlug, dragCrossing, restingX, stepSpring, wirePath } from "
 
 import { releaseView } from "./release-view.mjs?v=redesign-1";
 
+import { displayContour } from "./display-contour.mjs?v=notch-1";
+
 const stage = document.querySelector("#demo-screen");
 const stageWrap = document.querySelector(".demo-stage");
 const area = document.querySelector(".demo-area");
@@ -335,7 +337,38 @@ new IntersectionObserver(entries => {
   else if (!document.hidden) dispatch({ type: "resume" });
 }, { threshold: 0 }).observe(area);
 motionPreference.addEventListener("change", () => { drawGlow(); settlePlug(); scheduleNudge(); });
-new ResizeObserver(() => stage.style.setProperty("--glow-size", `${Math.max(6, Math.min(14, stage.clientWidth * 28 / 1280))}px`)).observe(stage);
+let contourKey = "";
+function updateDisplayContour() {
+  const width = stage.clientWidth, height = stage.clientHeight;
+  const style = getComputedStyle(stage);
+  const notchWidth = parseFloat(style.getPropertyValue("--notch-width"));
+  const notchHeight = parseFloat(style.getPropertyValue("--notch-height"));
+  const topRadius = parseFloat(style.getPropertyValue("--display-radius"));
+  const key = [width, height, notchWidth, notchHeight, topRadius].join(":");
+  if (key === contourKey) return;
+  const contour = displayContour({ width, height, notchWidth, notchHeight, topRadius });
+  if (!contour) return;
+  contourKey = key;
+  const svg = stage.querySelector(".display-glow");
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.querySelector("#display-outline").setAttribute("d", contour.path);
+  svg.querySelector("#display-exterior").setAttribute("d", contour.exterior);
+  svg.querySelector(".notch-housing").setAttribute("d", contour.housing);
+  const glow = Math.max(6, Math.min(14, width * 28 / 1280));
+  for (const [layer, filter, spread, blur] of [
+    [layers.band, "glow-band-filter", .24, .275],
+    [layers.compact, "glow-compact-filter", .08, .225],
+    [layers.expanded, "glow-expanded-filter", .7, .95]
+  ]) {
+    layer.querySelector("use").setAttribute("stroke-width", String(glow * spread));
+    const effect = svg.querySelector("#" + filter);
+    effect.setAttribute("x", "-64"); effect.setAttribute("y", "-64");
+    effect.setAttribute("width", String(width + 128)); effect.setAttribute("height", String(height + 128));
+    effect.querySelector("feGaussianBlur").setAttribute("stdDeviation", String(glow * blur));
+  }
+}
+new ResizeObserver(updateDisplayContour).observe(stage);
+updateDisplayContour();
 motionReady.then(() => { if (state.alert) drawGlow(); });
 render(); drawGlow(); drawPlug(); scheduleNudge(1600);
 

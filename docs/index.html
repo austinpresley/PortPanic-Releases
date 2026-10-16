@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#ffffff"><meta property="og:title" content="PortPanic | Camera tether alerts for Capture One">
   <meta property="og:description" content="Know when your tether drops. A small Mac menu bar app for Capture One.">
   <title>PortPanic | Camera tether alerts for Capture One</title>
-  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=redesign-1">
-  <script type="module" src="app.js?v=redesign-1"></script>
+  <link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="styles.css?v=notch-1">
+  <script type="module" src="app.js?v=notch-1"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -36,7 +36,23 @@
               <div class="card-foot" id="card-speed-row"><span>Link Speed</span><strong>5 Gb/s</strong></div>
               <div class="card-foot" id="card-loss-row" hidden><span id="card-notice"></span><button id="card-dismiss" type="button" data-dismiss-preview>Dismiss</button></div>
             </div>
-            <div class="edge-light" aria-hidden="true"><span class="glow-core"></span><span class="glow-band"></span><span class="glow-halo-compact"></span><span class="glow-halo-expanded"></span></div>
+            <svg class="display-glow" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+              <defs>
+                <path id="display-outline"/>
+                <path id="display-exterior" fill="currentColor" fill-rule="evenodd"/>
+                <clipPath id="display-visible" clipPathUnits="userSpaceOnUse"><use href="#display-outline"/></clipPath>
+                <filter id="glow-band-filter" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur/></filter>
+                <filter id="glow-compact-filter" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur/></filter>
+                <filter id="glow-expanded-filter" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur/></filter>
+              </defs>
+              <path class="notch-housing"/>
+              <g class="edge-light" clip-path="url(#display-visible)">
+                <g class="glow-core"><use href="#display-outline" stroke-width="2" opacity=".95"/></g>
+                <g class="glow-band"><use href="#display-exterior" filter="url(#glow-band-filter)" opacity=".7"/></g>
+                <g class="glow-halo-compact"><use href="#display-exterior" filter="url(#glow-compact-filter)" opacity=".6"/></g>
+                <g class="glow-halo-expanded"><use href="#display-exterior" filter="url(#glow-expanded-filter)" opacity=".62"/></g>
+              </g>
+            </svg>
             <div class="demo-dismiss" id="overlay-dismiss" hidden><div class="dismiss-context"><strong class="dismiss-camera">Canon EOS R5</strong><div class="dismiss-status"><span class="dismiss-symbol" aria-hidden="true">!</span><strong>Lost</strong><span class="dismiss-source">Capture One</span></div></div><div class="dismiss-action"><button type="button" data-dismiss-preview aria-label="Dismiss example alert for Canon EOS R5">Dismiss</button></div></div>
           </div>
           <div class="computer-base" aria-hidden="true"></div>
