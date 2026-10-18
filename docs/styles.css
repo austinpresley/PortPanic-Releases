@@ -275,7 +275,7 @@ h2{font-size:clamp(29px,3.05vw,39px);line-height:1.16;letter-spacing:-1.4px;font
 .footer{min-height:85px;border-top:1px solid var(--line);padding-top:22px;padding-bottom:24px;display:flex;align-items:center;gap:22px}
 .footer .brand{font-size:16px;letter-spacing:-.5px}
 .footer p{font-size:13px;color:var(--muted);margin:0;border-left:1px solid var(--line);padding-left:20px}
-.footer nav{margin-left:auto;display:flex;gap:23px;font-size:13px;color:var(--muted)}
+.footer nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:0 23px;font-size:13px;color:var(--muted)}
 .footer nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;padding-block:10px}
 .footer nav a:hover{text-decoration:underline}
 
@@ -408,7 +408,7 @@ h2{font-size:29px;letter-spacing:-1.1px}
 .help-line{max-width:none}
 .footer{flex-wrap:wrap;gap:14px;padding-top:20px;padding-bottom:25px}
 .footer p{font-size:12px;margin-left:auto;padding-left:0;border:0}
-.footer nav{width:100%;margin:0;justify-content:space-between;gap:10px;font-size:12px}
+.footer nav{width:100%;margin:0;justify-content:space-between;gap:0 16px;font-size:12px}
 .guide{padding-top:28px}
 .guide h1{font-size:35px}
 .guide td,.guide th{font-size:13px;overflow-wrap:anywhere}

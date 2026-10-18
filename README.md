@@ -40,4 +40,7 @@ website. PortPanic's application source is maintained privately.
 PortPanic is free to use and share unmodified. Bundled components retain their
 own licenses in ThirdPartyNotices.txt inside the app's Resources folder.
 
+PortPanic is free. If it helps on a shoot, you can
+[buy me a coffee](https://buymeacoffee.com/apresley).
+
 By [Austin Presley](https://apresley.com/apps).
