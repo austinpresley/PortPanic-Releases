@@ -9,7 +9,7 @@ confirms it. One menu bar item. One Settings window.
 
 ## Download
 
-Download 3.0.0 Beta 2 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
+Download 3.0.0 Beta 3 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
 or [Releases](https://github.com/austinpresley/PortPanic-Releases/releases).
 PortPanic is free for Mac. It is designed for macOS 14 or later, Apple silicon
 and Intel, with Capture One 16.x.

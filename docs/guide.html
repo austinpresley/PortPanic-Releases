@@ -2,11 +2,11 @@
 <p>PortPanic watches the camera tethered to Capture One and warns you when it
 drops. This guide covers setup, the alerts, every setting and what to do when
 something looks wrong.</p>
-<p>The current download is 3.0.0 Beta 2 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
 <h2 id="install">Install</h2>
+<p>The current download is 3.0.0 Beta 3 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
 <ol>
 <li>Download the latest DMG from the
-   <a href="https://austinpresley.github.io/PortPanic-Releases/#download">Releases page</a>.</li>
+   <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
 <li>Open the DMG and drag PortPanic to your Applications folder.</li>
 <li>Eject the DMG and open PortPanic from Applications.</li>
 </ol>
@@ -14,12 +14,16 @@ something looks wrong.</p>
 <h2 id="find-the-menu-bar-icon">Find the menu bar icon</h2>
 <p>PortPanic has no Dock icon. It lives in the menu bar as a camera. Click it to see
 the camera state, Dismiss an alert, open Settings (gear) or quit (power).
-Settings and Quit are the small icons at the top. Command-comma opens Settings
+Mute, Settings and Quit are the small icons at the top. The speaker just left
+of Settings mutes sounds without changing Volume. Click it again to unmute.
+Visual alerts and monitoring continue. Command-comma opens Settings
 and Command-Q quits while the card is open. Tab or arrow keys select an action;
 Return or Space activates it. Escape or clicking outside closes the card.</p>
 <p>On a MacBook with a notch, a crowded menu bar can hide the icon behind the
 notch. A menu bar manager can hide it too. If you cannot see it, open
-PortPanic again from Applications. It shows the Settings window.</p>
+PortPanic again from Applications. It shows the Settings window.
+You can also choose Hide menu bar icon in Settings, Monitoring. Turn it off
+there to bring the icon back.</p>
 <h2 id="first-run-and-capture-one-access">First run and Capture One access</h2>
 <ol>
 <li>Open Capture One with a session or catalog.</li>
@@ -75,22 +79,42 @@ EOS R5. Other names wrap naturally; the full original name remains accessible.</
 <p>If monitoring needs attention, Open Settings in the card takes you directly to
 Monitoring.</p>
 <p>Right after launch, the menu may say Not yet known until Capture One answers
-for the first time. Link Speed is information only. It never decides whether
+for the first time. Link Speed never decides whether
 a camera is tethered.</p>
 <p>A Mac check means PortPanic has seen a matching USB camera. The hollow Capture
 One indicator means it has not confirmed a tether. This can appear in Waiting
 or Lost. Reconnecting USB alone does not clear Lost. Unknown or ambiguous USB
 information is left unconfirmed. Additional cameras and their roles remain
 available by scrolling the card.</p>
+<h2 id="connection-speed-warnings">Connection speed warnings</h2>
+<p>A tethered camera below 5 Gb/s gets a warning, even on its first connection.
+PortPanic also warns if it drops below the fastest speed seen for that camera
+during the current watch, such as 10 to 5 Gb/s. A first connection at 5 Gb/s
+does not warn. Closing the session or catalog, quitting Capture One or
+restarting PortPanic resets the speed reference.</p>
+<p>The banner names the camera and shows its current speed and, when known, the
+previous higher speed. It uses the same serif camera name and right-hand Dismiss
+as the Loss panel, with an amber speed row. Check the USB cable, hub and port. A short Chirp plays
+once through your selected output and respects Mute and Volume. The banner
+leaves keyboard focus in your shooting app. Dismiss stops the banner and sound;
+the menu and Settings, Monitoring keep the warning until speed recovers.
+Another speed change can warn again. Loss and Recovery take priority.</p>
+<p>Unavailable speed does not mean a slow connection. PortPanic needs current,
+unambiguous USB information and Capture One must confirm the tether. Turn on
+Use USB to detect drops sooner in Advanced to enable USB speed information.</p>
 <h2 id="the-alerts">The alerts</h2>
 <h3 id="loss-alert">Loss Alert</h3>
 <p>When a tethered camera drops, a red glow appears around your screen edges and
 the Loss sound loops. Clicks pass through the glow to the apps underneath, and
-your keyboard focus stays where it was. Only the Dismiss button takes a click.</p>
+your keyboard focus stays where it was. A horizontal control shows the camera
+name above Lost and Capture One, with Dismiss on the right. It follows your
+Mac's light or dark appearance. Only the Dismiss button takes a click. Turn off Show dialog in Alerts to hide
+this control while keeping glow and sound. Menu Dismiss and shortcuts still work.</p>
 <p>The Loss Alert keeps going until one of these happens:</p>
 <ul>
 <li>The camera comes back. You get the Recovery Alert.</li>
 <li>You click Dismiss.</li>
+<li>The optional Auto-dismiss timeout ends.</li>
 <li>You close your session or catalog, or quit Capture One.</li>
 </ul>
 <p>Dismiss stops the light and sound. It does not mean the camera is back. The
@@ -101,7 +125,8 @@ Enter or record your own shortcut. These keys only act while a Loss Alert is
 showing. The rest of the time they work as usual.</p>
 <h3 id="recovery-alert">Recovery Alert</h3>
 <p>When a camera is tethered again, the glow turns green, the Recovery sound plays
-once and the glow fades out over three seconds. The menu returns to Connected.
+once and the glow fades out over three seconds with bundled sounds. A custom
+Recovery plays its whole file, with matching green Movement. The menu returns to Connected.
 To skip it, turn off Recovery Alert in Settings, Alerts.</p>
 <h2 id="test-the-alerts">Test the alerts</h2>
 <p>Open Settings and go to Alerts. The Loss and Recovery previews loop silently
@@ -110,7 +135,7 @@ side by side, or stacked in a narrow window.</p>
 <li>Click Test Loss Alert below the Loss preview. You get the real full-screen glow
   and sound. Click Stop or Dismiss to end it.</li>
 <li>Click Test Recovery Alert below the Recovery preview. It ends on its own after
-  three seconds.</li>
+  three seconds with a bundled sound, or at the end of your custom audio.</li>
 <li>Click Listen next to a sound to hear it without the glow. The Loss sound
   loops until you click Stop. The Recovery sound plays once.</li>
 </ul>
@@ -130,17 +155,38 @@ test after you change displays, speakers or settings.</p>
   still work. Default 80%.</li>
 <li><strong>Volume.</strong> Alert volume, default 90%. Zero silences alerts. It works within
   your Mac's own output volume.</li>
+<li><strong>Mute sounds.</strong> Silences alerts, tests and Listen while keeping your Volume
+  setting. Visual alerts stay on. The menu's speaker button controls the same setting.</li>
 <li><strong>Audio output device.</strong> Where alert sounds play. System Default follows your
   Mac's current output. If the device you chose is unplugged, PortPanic uses
   System Default, tells you, and switches back when the device returns.</li>
-<li><strong>Loss Sound and Recovery Sound.</strong> Eleven choices each, with a Listen button.
+<li><strong>Loss Sound and Recovery Sound.</strong> Thirteen Loss choices and eleven Recovery
+  choices, with a Listen button. Air Raid gives Loss a rising and falling
+  mechanical siren with a long wind-up, high hold and slow wind-down. Its
+  glow follows the sound when Movement is above zero. Losing Horn plays a
+  short horn phrase with a falling tail, with matching glow and Movement.
   Swell and Bloom are the defaults. Updating keeps your saved sound choices.</li>
+<li><strong>Choose audio file.</strong> Use your own Loss or Recovery sound. Pick a readable
+  mono or stereo WAV, AIFF, MP3, M4A or another supported audio format, from
+  0.25 to 60 seconds and under 100 MB. PortPanic keeps a local copy, so moving
+  the original is safe. Both glows follow the sound's smoothed energy. Loss
+  repeats; Recovery plays the entire file once. Very rapid accents are softened.
+  Use the Sound picker to return to a bundled choice. A failed or cancelled
+  import keeps your previous sound.</li>
+<li><strong>Auto-dismiss.</strong> Off by default. End Loss glow and sound after 1 to 60
+  seconds. The slider defaults to ten seconds. Status stays Lost until the
+  camera returns. A full-screen Loss test follows the same timeout.</li>
+<li><strong>Fade out.</strong> On by default when Auto-dismiss is enabled. Softens the final
+  0.12 seconds of light and sound. Off ends the light immediately.</li>
+<li><strong>Show dialog.</strong> On by default. Off hides the camera name and Dismiss panel,
+  keeping red glow and sound. Use menu Dismiss or your configured shortcut.</li>
 <li><strong>Loss color and Recovery color.</strong> Red and green by default.</li>
 <li><strong>Recovery Alert.</strong> On by default.</li>
 <li><strong>Dismiss label.</strong> The text on the Dismiss button.</li>
 <li><strong>Restore Appearance and Sound.</strong> Resets Display Scope, Thickness, Movement,
   Intensity, colors, Recovery Alert, sounds and Volume. Your detection,
-  Dismiss, audio output, login and Capture One access settings are kept.</li>
+  Dismiss, audio output, mute, icon visibility, login and Capture One access
+  settings are kept.</li>
 </ul>
 <h3 id="monitoring">Monitoring</h3>
 <ul>
@@ -154,6 +200,8 @@ test after you change displays, speakers or settings.</p>
   camera and audio device names. It never includes image names or session
   paths. Nothing is uploaded.</li>
 <li><strong>Startup.</strong> Launch at login.</li>
+<li><strong>Hide menu bar icon.</strong> Off by default. Monitoring and alerts continue while
+  hidden. Open PortPanic from Applications to return to Settings.</li>
 </ul>
 <h3 id="advanced">Advanced</h3>
 <ul>
@@ -196,7 +244,7 @@ Capture One itself.</p>
 a camera that Capture One shows as tethered. Check Capture One's camera tools.</p>
 <p><strong>The menu says Idle.</strong> Open Capture One and a session or catalog.</p>
 <p><strong>No sound.</strong> Check that your Mac is not muted and its output volume is up.
-Check Output and Volume together in Settings, Alerts. Then
+Turn off Mute sounds and check Output and Volume in Settings, Alerts. Then
 click Listen. If a sound fails to play, Settings shows a message next to it.</p>
 <p><strong>No glow, or the glow is on the wrong display.</strong> Check Display Scope and make
 sure Intensity is above zero. All Displays is the simplest setting.</p>
@@ -216,12 +264,17 @@ update window. Choose Check for Updates to review and install it.</p>
 <p>To update manually instead:</p>
 <ol>
 <li>Download the new DMG from the
-   <a href="https://austinpresley.github.io/PortPanic-Releases/#download">Releases page</a>.</li>
+   <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
 <li>Quit PortPanic from its menu.</li>
 <li>Drag the new PortPanic to Applications and replace the old copy.</li>
 <li>Open PortPanic and run a quick Test Loss Alert.</li>
 </ol>
 <p>Your settings and Capture One access are kept.</p>
+<h2 id="support-portpanic">Support PortPanic</h2>
+<p>PortPanic is free. To support its development, choose Buy Me a Coffee in
+Settings, About PortPanic, or visit
+<a href="https://buymeacoffee.com/apresley">Austin's support page</a>.
+The link opens your browser. Support is optional.</p>
 <h2 id="uninstall">Uninstall</h2>
 <ol>
 <li>Turn off Launch at login in Settings, Monitoring.</li>
@@ -240,4 +293,5 @@ access permission.</p>
 It has no analytics, system profiling or account. Logs stay on your
 Mac in <code>~/Library/Logs/PortPanic</code>. They include camera names and timings. They
 never include image names or session paths. Diagnostics files are saved only
-where you choose and are never uploaded.</p></main><footer class="footer wrap"><a href="./">PortPanic</a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p></footer></body></html>
+where you choose and are never uploaded.</p>
+</main><footer class="footer wrap"><a href="./">PortPanic</a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p></footer></body></html>
