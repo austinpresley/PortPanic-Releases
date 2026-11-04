@@ -9,7 +9,7 @@ confirms it. One menu bar item. One Settings window.
 
 ## Download
 
-Download 3.0.0 Beta 3 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
+Download 3.2.0 Beta 1 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
 or [Releases](https://github.com/austinpresley/PortPanic-Releases/releases).
 PortPanic is free for Mac. It is designed for macOS 14 or later, Apple silicon
 and Intel, with Capture One 16.x.
@@ -17,6 +17,19 @@ and Intel, with Capture One 16.x.
 This is a public beta for testing. Real-camera drop/recovery, extended shooting,
 fresh-install permissions and macOS 14/Intel coverage are still being checked.
 Test with your own setup before relying on it during a shoot.
+
+## New in 3.2 Beta
+
+- Pre-approve battery or camera swaps with an adjustable window and a global shortcut.
+- Add one Stream Deck key for live status, approval countdowns and alarm dismissal.
+- Review camera history and a clearer pre-shoot status check.
+- Export and import settings, including selected custom sounds.
+- Get USB speed warnings based on documented specifications for 97 camera models.
+- Optionally scale the glow to each display.
+- Use a cleaner menu and normal Recovery alerts after approved swaps.
+
+Install the Stream Deck action from Settings, Advanced, Install Stream Deck
+Plugin. Its installer is included with PortPanic. Existing settings are kept.
 
 ## Updates and privacy
 

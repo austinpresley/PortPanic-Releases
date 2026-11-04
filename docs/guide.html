@@ -3,7 +3,7 @@
 drops. This guide covers setup, the alerts, every setting and what to do when
 something looks wrong.</p>
 <h2 id="install">Install</h2>
-<p>The current download is 3.0.0 Beta 3 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
+<p>The current download is 3.2.0 Beta 1 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
 <ol>
 <li>Download the latest DMG from the
    <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
@@ -86,14 +86,124 @@ One indicator means it has not confirmed a tether. This can appear in Waiting
 or Lost. Reconnecting USB alone does not clear Lost. Unknown or ambiguous USB
 information is left unconfirmed. Additional cameras and their roles remain
 available by scrolling the card.</p>
+<h2 id="swap-a-battery-or-camera">Swap a battery or camera</h2>
+<p>Approve the disconnect before you unplug on purpose. PortPanic then stays
+silent for that drop, even if the camera is off longer than the time you set.</p>
+<p>You can approve it four ways. All of them do the same thing:</p>
+<ul>
+<li>Click the PortPanic camera icon in the menu bar, then Approve Disconnect,
+  in the card below the camera status.</li>
+<li>Press Control + Option + Command + D from any app.</li>
+<li>In Settings, open Advanced and click Approve Disconnect. This works when the
+  menu bar icon is hidden.</li>
+<li>Press the PortPanic Control key on a Stream Deck, if you installed it.</li>
+</ul>
+<p>Unplug within the Approval window, 15 seconds unless you change it in Advanced
+(1 to 300 seconds). The menu counts down, for example "Disconnect approved ·
+0:12 left". When that camera drops, the menu reads "Disconnected · Approved".
+There is no glow, sound or alarm, now or later. When Capture One lists a camera
+again, PortPanic goes back to Connected with the normal green Recovery glow
+and sound, even inside the original window. The next drop that you did
+not approve alerts as usual.</p>
+<p>Approve Disconnect is available only while a camera is Connected and PortPanic
+can read Capture One. It is unavailable while a drop is being confirmed, an
+alert or Delay alert is pending, an approval is running, or a Test Alert or
+Listen is playing. It cannot silence a Loss Alert that is already open; use
+Dismiss for that.</p>
+<p>If nothing drops in time, the approval simply ends. Press again during the
+countdown, or click Cancel, to end it early. An approval covers one camera
+drop. If a second camera drops too, PortPanic alerts for that camera. Closing
+Capture One or its session or catalog, or quitting PortPanic, ends an approval.
+Nothing about it is saved, and it never turns itself back on.</p>
+<h3 id="the-shortcut">The shortcut</h3>
+<p>The shortcut works from any app and needs no extra permission. During a Loss
+Alert it dismisses the alert instead, and it never approves in the same press.
+Change it or turn it off in Advanced, under Approve Disconnect. Turning it off
+is remembered. It cannot be the same keys as the Dismiss shortcut. If another
+app already uses it, Advanced says so; choose another shortcut or use the menu.</p>
+<h3 id="stream-deck">Stream Deck</h3>
+<p>Open Settings, Advanced, and click Install Stream Deck Plugin under Approve
+Disconnect. Complete the install in Stream Deck, then drag PortPanic Control
+onto an unused key. The installer is included with PortPanic; the Stream Deck
+app must already be installed.</p>
+<p>The optional PortPanic Control plugin adds one key. It always shows what
+PortPanic reports, and one press does the one thing that makes sense:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Meaning</th>
+<th>Press</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Green, shield, Armed</td>
+<td>Connected and protected</td>
+<td>Approves a disconnect</td>
+</tr>
+<tr>
+<td>Amber ring with seconds, Approved</td>
+<td>Approval counting down</td>
+<td>Cancels it</td>
+</tr>
+<tr>
+<td>Amber camera with slash, Lost / Approved</td>
+<td>The approved drop</td>
+<td>Nothing; it stays silent</td>
+</tr>
+<tr>
+<td>Red, Lost / Dismiss</td>
+<td>Loss Alert or a delayed alert</td>
+<td>Dismisses it</td>
+</tr>
+<tr>
+<td>Dark red bell, Lost / Silenced</td>
+<td>Alert dismissed, camera still gone</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td>Yellow question mark, Check</td>
+<td>Capture One is not answering</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td>Gray, Waiting or Idle</td>
+<td>No camera or no session</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td>Gray, Open app</td>
+<td>PortPanic is not running</td>
+<td>Opens PortPanic only</td>
+</tr>
+</tbody>
+</table>
+<p>A press that cannot do anything shows the Stream Deck warning mark. The window
+length comes from PortPanic Settings; the key has no settings of its own. The
+key talks only to PortPanic on this Mac.</p>
 <h2 id="connection-speed-warnings">Connection speed warnings</h2>
 <p>A tethered camera below 5 Gb/s gets a warning, even on its first connection.
 PortPanic also warns if it drops below the fastest speed seen for that camera
-during the current watch, such as 10 to 5 Gb/s. A first connection at 5 Gb/s
-does not warn. Closing the session or catalog, quitting Capture One or
-restarting PortPanic resets the speed reference.</p>
+during the current watch, such as 10 to 5 Gb/s. For recognized models, a local
+camera specification catalog also compares the connection with the camera's
+documented USB capability. A 10 Gb/s camera first connecting at 5 Gb/s warns
+without needing an earlier faster connection. Unknown models keep the ordinary
+slow-speed and observed-drop rules. Closing the session or catalog, quitting
+Capture One or restarting PortPanic resets observed history, not the catalog.</p>
 <p>The banner names the camera and shows its current speed and, when known, the
-previous higher speed. It uses the same serif camera name and right-hand Dismiss
+previous higher speed. Below camera speed compares the current rate with the
+supported rate, such as 5 / 10 Gb/s. The full warning names the faster available
+port. A camera's documented capability does not identify a faulty cable or
+guarantee photo transfer throughput. A known USB 2.0-only camera at 480 Mb/s
+gets guidance explaining its camera limit. A faster cable cannot exceed it.
+Development build 459 includes 97 documented models and expands through app
+updates. Uncertain specifications, including the R6 Mark II, stay unconfirmed
+and keep the ordinary slow-speed and observed-drop warnings. The catalog
+stays on your Mac and makes no network requests.</p>
+<p>Camera specification comparisons are in development builds 456 and later. The current
+public Beta 3 download has the below-5 and observed-drop warnings.</p>
+<p>The warning uses the same serif camera name and right-hand Dismiss
 as the Loss panel, with an amber speed row. Check the USB cable, hub and port. A short Chirp plays
 once through your selected output and respects Mute and Volume. The banner
 leaves keyboard focus in your shooting app. Dismiss stops the banner and sound;
@@ -120,9 +230,10 @@ this control while keeping glow and sound. Menu Dismiss and shortcuts still work
 <p>Dismiss stops the light and sound. It does not mean the camera is back. The
 menu still says Lost, and you will not get a second alert for the same drop.
 If you use two cameras and the second one also drops, you get a new alert.</p>
-<p>You can also dismiss from the keyboard. In Settings, Advanced, turn on Return /
-Enter or record your own shortcut. These keys only act while a Loss Alert is
-showing. The rest of the time they work as usual.</p>
+<p>You can also dismiss with Return, keypad Enter or Escape. This is on by default
+in development build 457 and later. Saved on/off choices are kept. Settings,
+Advanced can turn it off or record a custom shortcut. These keys only act while
+a Loss Alert is showing. The rest of the time they work as usual.</p>
 <h3 id="recovery-alert">Recovery Alert</h3>
 <p>When a camera is tethered again, the glow turns green, the Recovery sound plays
 once and the glow fades out over three seconds with bundled sounds. A custom
@@ -130,7 +241,9 @@ Recovery plays its whole file, with matching green Movement. The menu returns to
 To skip it, turn off Recovery Alert in Settings, Alerts.</p>
 <h2 id="test-the-alerts">Test the alerts</h2>
 <p>Open Settings and go to Alerts. The Loss and Recovery previews loop silently
-side by side, or stacked in a narrow window.</p>
+side by side, or stacked in a narrow window. They show the proportions and
+glow coverage of the display holding Settings. Moving Settings to another
+display updates the previews. Full-screen tests show the actual alert.</p>
 <ul>
 <li>Click Test Loss Alert below the Loss preview. You get the real full-screen glow
   and sound. Click Stop or Dismiss to end it.</li>
@@ -147,7 +260,11 @@ test after you change displays, speakers or settings.</p>
 <li><strong>Displays.</strong> Where the glow appears: All Displays (default), Main
   Display, or Capture One Display. Capture One Display uses the display showing
   most of Capture One's largest window and falls back to the main display.</li>
-<li><strong>Thickness.</strong> How wide the glow is. Default 28 pt.</li>
+<li><strong>Scale glow to each display.</strong> Off by default. On keeps the glow proportional
+  to each display's shorter edge. Each screen sizes itself independently.</li>
+<li><strong>Thickness.</strong> How wide the glow is. Default 28 pt. With display scaling on,
+  this reads 2.8%. Switching keeps the chosen numeric amount. Actual thickness
+  stays within 4 to 240 pt, including on very small or large desktops.</li>
 <li><strong>Movement.</strong> How far the glow pulses inward. Zero keeps it steady. Default
   25%. Reduce Motion and Dim Flashing Lights in macOS Accessibility settings
   also keep it steady.</li>
@@ -183,20 +300,32 @@ test after you change displays, speakers or settings.</p>
 <li><strong>Loss color and Recovery color.</strong> Red and green by default.</li>
 <li><strong>Recovery Alert.</strong> On by default.</li>
 <li><strong>Dismiss label.</strong> The text on the Dismiss button.</li>
-<li><strong>Restore Appearance and Sound.</strong> Resets Display Scope, Thickness, Movement,
+<li><strong>Restore Appearance and Sound.</strong> Resets Display Scope, glow scaling, Thickness, Movement,
   Intensity, colors, Recovery Alert, sounds and Volume. Your detection,
   Dismiss, audio output, mute, icon visibility, login and Capture One access
   settings are kept.</li>
 </ul>
 <h3 id="monitoring">Monitoring</h3>
 <ul>
+<li><strong>Camera history.</strong> Keeps the latest 20 camera drops with their times and
+  observed duration. Tether restored means Capture One confirmed a camera
+  again. Monitoring ended means Capture One or its session/catalog closed.
+  Monitoring interrupted means PortPanic reopened with an unfinished record.
+  Its end time and duration are unknown.
+  The menu's Camera history action shows the latest drop's date/time and opens
+  this list. Clear History removes it.
+  Alert tests and sound auditions add no history.
+  History is stored in <code>~/Library/Application Support/PortPanic/camera-history.json</code>.</li>
 <li><strong>Capture One access.</strong> Shows whether access is allowed, with Allow Capture
   One and Open System Settings when it is not.</li>
-<li><strong>Status.</strong> The camera state, camera names, Link Speed and whether
-  PortPanic can currently read Capture One.</li>
+<li><strong>Before shooting.</strong> Shows Capture One access, whether a session or catalog
+  is open, the tethered camera and known USB Link Speed. Last known information
+  stays marked. Test Loss Alert checks PortPanic's notification. Take a test
+  photo in Capture One to confirm that capture works.
+  Open Settings with the menu gear, then choose Monitoring.</li>
 <li><strong>Show Log.</strong> Opens the current log file.</li>
 <li><strong>Export Diagnostics.</strong> Saves a file you can attach to a bug report. It
-  includes the PortPanic version, macOS version, your settings, recent logs and
+  includes the PortPanic version, macOS version, your settings, camera history, recent logs and
   camera and audio device names. It never includes image names or session
   paths. Nothing is uploaded.</li>
 <li><strong>Startup.</strong> Launch at login.</li>
@@ -205,10 +334,18 @@ test after you change displays, speakers or settings.</p>
 </ul>
 <h3 id="advanced">Advanced</h3>
 <ul>
-<li><strong>Dismiss shortcuts.</strong> Record a shortcut that includes Command or Control
-  (Option and Shift can be added), or turn on Use Return or Enter to dismiss.
-  A recorded shortcut wins over Return / Enter. Both only act during a Loss
-  Alert. If another app already uses your shortcut, PortPanic says so and the
+<li><strong>Transfer settings.</strong> Export Settings saves your alert choices and selected
+  custom sounds in one JSON file. Import Settings applies a saved file after
+  checking its settings and audio. The file can be up to 256 MiB. Custom sounds
+  keep their names and audio and get new local copies. Access, login, updates,
+  Audio Output and camera history stay on the destination Mac. Choose an output
+  there if needed, then use Test Loss Alert. Cancel or an invalid file leaves
+  the previous settings intact. Nothing is uploaded.</li>
+<li><strong>Dismiss shortcuts.</strong> Use Enter or Escape to dismiss is on by default in
+  development build 457 and later, with saved choices kept. It accepts plain
+  Return, keypad Enter and Escape. You can also record a shortcut that includes
+  Command or Control, with optional Option and Shift. A recorded shortcut takes
+  precedence over the built-in keys. Both only act during a Loss Alert. If another app already uses your shortcut, PortPanic says so and the
   Dismiss button still works.</li>
 <li><strong>Delay alert.</strong> Zero to ten seconds, off by default. PortPanic waits this
   long after a confirmed drop before alerting. A camera that returns within the
@@ -281,8 +418,9 @@ The link opens your browser. Support is optional.</p>
 <li>Quit PortPanic from its menu.</li>
 <li>Delete PortPanic from Applications.</li>
 </ol>
-<p>To remove everything else, delete <code>~/Library/Logs/PortPanic</code>, then run these
-in Terminal:</p>
+<p>To remove logs, camera history and managed custom sounds, delete
+<code>~/Library/Logs/PortPanic</code> and <code>~/Library/Application Support/PortPanic</code>.
+Then run these in Terminal:</p>
 <pre><code class="language-sh">defaults delete com.apresley.PortPanic
 tccutil reset AppleEvents com.apresley.PortPanic
 </code></pre>
@@ -293,5 +431,6 @@ access permission.</p>
 It has no analytics, system profiling or account. Logs stay on your
 Mac in <code>~/Library/Logs/PortPanic</code>. They include camera names and timings. They
 never include image names or session paths. Diagnostics files are saved only
-where you choose and are never uploaded.</p>
-</main><footer class="footer wrap"><a href="./">PortPanic</a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p></footer></body></html>
+where you choose and are never uploaded.
+Camera history stays in <code>~/Library/Application Support/PortPanic</code> and is
+included when you explicitly export diagnostics.</p></main><footer class="footer wrap"><a href="./">PortPanic</a><p>By <a href="https://apresley.com/apps">Austin Presley</a></p></footer></body></html>
