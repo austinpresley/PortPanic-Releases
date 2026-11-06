@@ -1,59 +1,78 @@
-<p align="center"><img src="docs/assets/icon.png" width="96" alt="PortPanic"></p>
-<h1 align="center">PortPanic</h1>
-<p align="center">Camera tether alerts for Capture One.</p>
-<p align="center"><a href="https://austinpresley.github.io/PortPanic-Releases/">Visit the website</a> · <a href="https://github.com/austinpresley/PortPanic-Releases/releases">Downloads</a> · <a href="https://austinpresley.github.io/PortPanic-Releases/guide.html">User guide</a></p>
+<p align="center">
+  <img src=".github/readme/icon.png" width="72" height="72" alt="PortPanic app icon">
+</p>
 
-When your tethered camera drops, PortPanic lights up the edges of your screen
-and loops a sound. When Capture One sees the camera again, a short green alert
-confirms it. One menu bar item. One Settings window.
+<h1 align="center">Know when your tether drops.</h1>
 
-## Download
+<p align="center">
+  <b>PortPanic</b> is a free macOS menu bar app for Capture One.
+</p>
 
-Download 3.2.0 Beta 1 from the [website](https://austinpresley.github.io/PortPanic-Releases/#download)
-or [Releases](https://github.com/austinpresley/PortPanic-Releases/releases).
-PortPanic is free for Mac. It is designed for macOS 14 or later, Apple silicon
-and Intel, with Capture One 16.x.
+<p align="center">
+  <a href="https://austinpresley.github.io/PortPanic-Releases/#download"><b>Download 3.2.0 Beta 1</b></a>
+  &emsp;
+  <a href="https://austinpresley.github.io/PortPanic-Releases/#try-it">Try&nbsp;it&nbsp;with&nbsp;sound</a>
+</p>
 
-This is a public beta for testing. Real-camera drop/recovery, extended shooting,
-fresh-install permissions and macOS 14/Intel coverage are still being checked.
-Test with your own setup before relying on it during a shoot.
+<p align="center"><sub>macOS 14 or later · Apple silicon and Intel · Capture One 16.x</sub></p>
 
-## New in 3.2 Beta
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark) and (max-width: 600px)" srcset=".github/readme/demo-still-dark-mobile.png">
+    <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset=".github/readme/demo-still-light-mobile.png">
+    <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset=".github/readme/demo-still-dark.png">
+    <source media="(prefers-reduced-motion: reduce)" srcset=".github/readme/demo-still-light.png">
+    <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset=".github/readme/demo-dark-mobile.gif">
+    <source media="(max-width: 600px)" srcset=".github/readme/demo-light-mobile.gif">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/demo-dark.gif">
+    <img src=".github/readme/demo-light.gif" width="800" alt="Illustrated demo. A camera disconnects. The menu changes to Lost, a red glow surrounds the screen and an alarm loops. The camera reconnects, the menu returns to Connected and a short green Recovery glow and sound confirm its return.">
+  </picture>
+</p>
 
-- Pre-approve battery or camera swaps with an adjustable window and a global shortcut.
-- Add one Stream Deck key for live status, approval countdowns and alarm dismissal.
-- Review camera history and a clearer pre-shoot status check.
-- Export and import settings, including selected custom sounds.
-- Get USB speed warnings based on documented specifications for 97 camera models.
-- Optionally scale the glow to each display.
-- Use a cleaner menu and normal Recovery alerts after approved swaps.
+Every display glows red and the alarm loops until the camera returns or you dismiss it. Your keyboard stays in Capture One.
 
-Install the Stream Deck action from Settings, Advanced, Install Stream Deck
-Plugin. Its installer is included with PortPanic. Existing settings are kept.
+**One missed reading never triggers an alarm.** Capture One confirms the tether. Quitting Capture One or closing the session or catalog leaves PortPanic quiet.
 
-## Updates and privacy
+## Unplug on purpose
 
-PortPanic uses Sparkle for update checks and installation. Automatic checks
-are optional. You choose when to install. Updates wait while a camera is
-being watched. Network access is limited to updates and release notes.
-Camera monitoring and logs stay on your Mac. No analytics or system profiling.
+Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>D</kbd> or tap the optional Stream Deck key. Unplug within 15 seconds. That drop stays silent, and the green Recovery alert still confirms the return.
 
-## Report a problem
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset=".github/readme/swap-dark-mobile.png">
+    <source media="(max-width: 600px)" srcset=".github/readme/swap-light-mobile.png">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/swap-dark.png">
+    <img src=".github/readme/swap-light.png" width="800" alt="Native menu previews. Before unplugging, Connected offers Approve Disconnect. During an approved swap, Lost remains visible with Approved and Silent until a camera returns.">
+  </picture>
+  <br><sub>Menus shown from the upcoming update.</sub>
+</p>
 
-Use the [bug report form](https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml).
-Describe what happened and how to reproduce it. Settings, Monitoring, Export
-Diagnostics saves a file you can review and attach. It includes camera and
-audio device names, but no image names or session paths.
+- **Catch slow USB links.** Get a warning below 5 Gb/s or below the fastest speed seen during the current watch.
+- **Keep it local.** No account or analytics. Camera history and logs stay on your Mac.
 
-## About this repository
+## Before your first shoot
 
-This repository holds public downloads, release notes, the update feed and the
-website. PortPanic's application source is maintained privately.
+1. [Download the DMG](https://austinpresley.github.io/PortPanic-Releases/#download) and drag PortPanic to Applications.
+2. Open Capture One with a session or catalog. Open PortPanic and allow Capture One access when asked.
+3. Tether your camera. In Settings, Alerts, choose **Test Loss Alert** to check the glow and sound. Take a test photo in Capture One to verify capture.
 
-PortPanic is free to use and share unmodified. Bundled components retain their
-own licenses in ThirdPartyNotices.txt inside the app's Resources folder.
+> [!NOTE]
+> This is a public beta. Real-camera, extended-shooting, fresh-install and macOS 14/Intel checks are still in progress. Test with your setup before relying on it during a shoot.
 
-PortPanic is free. If it helps on a shoot, you can
-[buy me a coffee](https://buymeacoffee.com/apresley).
+<details>
+<summary>How PortPanic watches your camera</summary>
 
-By [Austin Presley](https://apresley.com/apps).
+PortPanic reads Capture One's tethered-camera list every second or two. Access is read-only. It never changes your session or catalog. A drop needs a matching USB removal or two consecutive Capture One checks. USB alone never counts as connected.
+
+The hero animates the website demo with native menu captures. All menus shown come from approved development build 467. The public download is build 466. The menu layout differs; the alert and approved-disconnect behavior shown here is available in the public beta.
+
+</details>
+
+<p align="center">
+  <a href="https://austinpresley.github.io/PortPanic-Releases/guide.html">User guide</a> ·
+  <a href="https://github.com/austinpresley/PortPanic-Releases/issues/new?template=bug_report.yml">Report a problem</a> ·
+  <a href="https://github.com/austinpresley/PortPanic-Releases/releases">Release notes</a> ·
+  <a href="https://buymeacoffee.com/apresley">Buy me a coffee</a>
+</p>
+
+<p align="center"><sub>This repository holds downloads, release notes, the update feed and the website.<br>Free to use and share unmodified. Application source is private.<br>Bundled components keep their own licenses in the app's ThirdPartyNotices.txt.</sub></p>
