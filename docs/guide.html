@@ -3,7 +3,7 @@
 drops. This guide covers setup, the alerts, every setting and what to do when
 something looks wrong.</p>
 <h2 id="install">Install</h2>
-<p>The current download is 3.2.0 Beta 1 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
+<p>The current download is 3.2.0 Beta 2 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
 <ol>
 <li>Download the latest DMG from the
    <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
@@ -42,7 +42,7 @@ button in Settings, Monitoring takes you there. PortPanic checks again on its
 own.</p>
 <h3 id="launch-at-login">Launch at login</h3>
 <p>Launch at login is off by default. Turn it on so PortPanic is running every
-time you shoot: Settings, Monitoring, Startup, Launch at login.</p>
+time you shoot: Settings, Monitoring, App, Launch at login.</p>
 <h2 id="what-the-menu-says">What the menu says</h2>
 <p>Recognized camera names put the brand above the model, such as Canon above
 EOS R5. Other names wrap naturally; the full original name remains accessible.</p>
@@ -283,13 +283,14 @@ test after you change displays, speakers or settings.</p>
   glow follows the sound when Movement is above zero. Losing Horn plays a
   short horn phrase with a falling tail, with matching glow and Movement.
   Swell and Bloom are the defaults. Updating keeps your saved sound choices.</li>
-<li><strong>Choose audio file.</strong> Use your own Loss or Recovery sound. Pick a readable
+<li><strong>Choose audio file.</strong> Open either Sound menu and choose Choose audio file to use your own Loss or Recovery sound. Pick a readable
   mono or stereo WAV, AIFF, MP3, M4A or another supported audio format, from
   0.25 to 60 seconds and under 100 MB. PortPanic keeps a local copy, so moving
   the original is safe. Both glows follow the sound's smoothed energy. Loss
   repeats; Recovery plays the entire file once. Very rapid accents are softened.
   Use the Sound picker to return to a bundled choice. A failed or cancelled
   import keeps your previous sound.</li>
+<li><strong>Dismiss options.</strong> Expand this row in Alerts for Show dialog, Dismiss label, Auto-dismiss and Fade out. Its summary shows the current dialog and timeout choices.</li>
 <li><strong>Auto-dismiss.</strong> Off by default. End Loss glow and sound after 1 to 60
   seconds. The slider defaults to ten seconds. Status stays Lost until the
   camera returns. A full-screen Loss test follows the same timeout.</li>
@@ -312,7 +313,7 @@ test after you change displays, speakers or settings.</p>
   again. Monitoring ended means Capture One or its session/catalog closed.
   Monitoring interrupted means PortPanic reopened with an unfinished record.
   Its end time and duration are unknown.
-  The menu's Camera history action shows the latest drop's date/time and opens
+  The menu's Last drop action shows the latest drop's date/time and opens
   this list. Clear History removes it.
   Alert tests and sound auditions add no history.
   History is stored in <code>~/Library/Application Support/PortPanic/camera-history.json</code>.</li>
@@ -323,12 +324,13 @@ test after you change displays, speakers or settings.</p>
   stays marked. Test Loss Alert checks PortPanic's notification. Take a test
   photo in Capture One to confirm that capture works.
   Open Settings with the menu gear, then choose Monitoring.</li>
+<li><strong>Support.</strong> Expand this row for Show Log, Export Diagnostics and Report a Problem.</li>
 <li><strong>Show Log.</strong> Opens the current log file.</li>
 <li><strong>Export Diagnostics.</strong> Saves a file you can attach to a bug report. It
   includes the PortPanic version, macOS version, your settings, camera history, recent logs and
   camera and audio device names. It never includes image names or session
   paths. Nothing is uploaded.</li>
-<li><strong>Startup.</strong> Launch at login.</li>
+<li><strong>App.</strong> Launch at login, Hide menu bar icon and automatic update checks are grouped here.</li>
 <li><strong>Hide menu bar icon.</strong> Off by default. Monitoring and alerts continue while
   hidden. Open PortPanic from Applications to return to Settings.</li>
 </ul>
@@ -341,6 +343,7 @@ test after you change displays, speakers or settings.</p>
   Audio Output and camera history stay on the destination Mac. Choose an output
   there if needed, then use Test Loss Alert. Cancel or an invalid file leaves
   the previous settings intact. Nothing is uploaded.</li>
+<li><strong>Shortcuts.</strong> Dismiss alert, Approve disconnect and the Stream Deck installer share this section. Shortcut symbols are compact; recording and Clear work as before.</li>
 <li><strong>Dismiss shortcuts.</strong> Use Enter or Escape to dismiss is on by default in
   development build 457 and later, with saved choices kept. It accepts plain
   Return, keypad Enter and Escape. You can also record a shortcut that includes

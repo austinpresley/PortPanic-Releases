@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://austinpresley.github.io/PortPanic-Releases/#download"><b>Download 3.2.0 Beta 1</b></a>
+  <a href="https://austinpresley.github.io/PortPanic-Releases/#download"><b>Download 3.2.0 Beta 2</b></a>
   &emsp;
   <a href="https://austinpresley.github.io/PortPanic-Releases/#try-it">Try&nbsp;it&nbsp;with&nbsp;sound</a>
 </p>
@@ -44,7 +44,7 @@ Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</k
     <source media="(prefers-color-scheme: dark)" srcset=".github/readme/swap-dark.png">
     <img src=".github/readme/swap-light.png" width="800" alt="Native menu previews. Before unplugging, Connected offers Approve Disconnect. During an approved swap, Lost remains visible with Approved and Silent until a camera returns.">
   </picture>
-  <br><sub>Menus shown from the upcoming update.</sub>
+  <br><sub>Menu layout included in Beta 2.</sub>
 </p>
 
 - **Catch slow USB links.** Get a warning below 5 Gb/s or below the fastest speed seen during the current watch.
@@ -64,7 +64,7 @@ Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</k
 
 PortPanic reads Capture One's tethered-camera list every second or two. Access is read-only. It never changes your session or catalog. A drop needs a matching USB removal or two consecutive Capture One checks. USB alone never counts as connected.
 
-The hero animates the website demo with native menu captures. All menus shown come from approved development build 467. The public download is build 466. The menu layout differs; the alert and approved-disconnect behavior shown here is available in the public beta.
+The hero animates the website demo with native menu captures from build 467. The same menu layout is included in the current Beta 2 download, build 469. The illustrated demo shows the alert and approved-disconnect behavior.
 
 </details>
 
