@@ -17,7 +17,7 @@ export function releaseView(release) {
   return {
     available: true, href: url.href, action: beta ? `Download Beta ${release.betaNumber} for Mac` : "Download for Mac",
     status: `Free. Version ${release.version}${beta ? ` Beta ${release.betaNumber}` : ""}.${typeof release.size === "string" && release.size ? ` ${release.size}.` : ""}`,
-    detail: beta ? "Public beta for testing. Real-camera, extended-shooting and fresh-install checks are still in progress. Test with your setup before relying on it during a shoot."
+    detail: beta ? "Public beta for testing. Real-camera, extended-shooting, fresh-install and macOS 14/Intel checks are still in progress. Test with your setup before relying on it during a shoot."
       : "Open the DMG and drag PortPanic to Applications."
   };
 }

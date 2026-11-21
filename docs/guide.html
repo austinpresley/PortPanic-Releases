@@ -3,7 +3,7 @@
 drops. This guide covers setup, the alerts, every setting and what to do when
 something looks wrong.</p>
 <h2 id="install">Install</h2>
-<p>The current download is 3.2.0 Beta 2 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
+<p>The current download is 3.2.0 Beta 3 for testing. Real-camera drop/recovery, extended shooting, fresh-install permissions and macOS 14/Intel coverage are still being checked. Test with your own setup before relying on it during a shoot.</p>
 <ol>
 <li>Download the latest DMG from the
    <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
@@ -22,27 +22,25 @@ Return or Space activates it. Escape or clicking outside closes the card.</p>
 <p>On a MacBook with a notch, a crowded menu bar can hide the icon behind the
 notch. A menu bar manager can hide it too. If you cannot see it, open
 PortPanic again from Applications. It shows the Settings window.
-You can also choose Hide menu bar icon in Settings, Monitoring. Turn it off
-there to bring the icon back.</p>
+In Settings, General, turn Show menu bar icon back on.</p>
 <h2 id="first-run-and-capture-one-access">First run and Capture One access</h2>
 <ol>
 <li>Open Capture One with a session or catalog.</li>
-<li>PortPanic opens Settings, Monitoring and asks to read Capture One's list of
-   tethered cameras. Choose Allow Capture One.</li>
+<li>Open the PortPanic menu and choose Allow Capture One. You can also find
+   this action in Settings, Camera.</li>
 <li>Allow it when macOS asks. macOS calls this permission Automation.</li>
 </ol>
 <p>PortPanic only reads the camera list. It does not change your session or
-catalog. After access is allowed, Settings offers Try Loss Alert and a Launch
-at login switch. Choose Done when you are finished. It ends the setup test. PortPanic stays in
-the menu bar, and monitoring keeps running
-whether Settings is open or not.</p>
+catalog. Once you allow access, setup walks you through testing the Loss alert
+and offers to start PortPanic at login. Choose Done when you finish in Settings.
+PortPanic keeps watching while its window is closed.</p>
 <p>If you denied access, open System Settings, then Privacy &amp; Security, then
 Automation. Find PortPanic and turn on Capture One. The Open System Settings
-button in Settings, Monitoring takes you there. PortPanic checks again on its
+button in Settings, Camera takes you there. PortPanic checks again on its
 own.</p>
 <h3 id="launch-at-login">Launch at login</h3>
 <p>Launch at login is off by default. Turn it on so PortPanic is running every
-time you shoot: Settings, Monitoring, App, Launch at login.</p>
+time you shoot: Settings, General, App, Launch at login.</p>
 <h2 id="what-the-menu-says">What the menu says</h2>
 <p>Recognized camera names put the brand above the model, such as Canon above
 EOS R5. Other names wrap naturally; the full original name remains accessible.</p>
@@ -76,8 +74,8 @@ EOS R5. Other names wrap naturally; the full original name remains accessible.</
 </tr>
 </tbody>
 </table>
-<p>If monitoring needs attention, Open Settings in the card takes you directly to
-Monitoring.</p>
+<p>If monitoring needs attention, the menu opens Camera settings. Hover over
+the status or USB speed indicators for details.</p>
 <p>Right after launch, the menu may say Not yet known until Capture One answers
 for the first time. Link Speed never decides whether
 a camera is tethered.</p>
@@ -91,21 +89,20 @@ available by scrolling the card.</p>
 silent for that drop, even if the camera is off longer than the time you set.</p>
 <p>You can approve it four ways. All of them do the same thing:</p>
 <ul>
-<li>Click the PortPanic camera icon in the menu bar, then Approve Disconnect,
-  in the card below the camera status.</li>
+<li>Click the PortPanic camera icon in the menu bar, then click Unplug.</li>
 <li>Press Control + Option + Command + D from any app.</li>
-<li>In Settings, open Advanced and click Approve Disconnect. This works when the
+<li>In Settings, open Shortcuts and click Unplug. This works when the
   menu bar icon is hidden.</li>
 <li>Press the PortPanic Control key on a Stream Deck, if you installed it.</li>
 </ul>
-<p>Unplug within the Approval window, 15 seconds unless you change it in Advanced
-(1 to 300 seconds). The menu counts down, for example "Disconnect approved ·
-0:12 left". When that camera drops, the menu reads "Disconnected · Approved".
+<p>Unplug within the Approval window, 15 seconds unless you change it in Shortcuts
+(1 to 300 seconds). The menu shows the time left beside a countdown ring.
+When that camera drops, the menu marks it as approved.
 There is no glow, sound or alarm, now or later. When Capture One lists a camera
 again, PortPanic goes back to Connected with the normal green Recovery glow
 and sound, even inside the original window. The next drop that you did
 not approve alerts as usual.</p>
-<p>Approve Disconnect is available only while a camera is Connected and PortPanic
+<p>Unplug is available only while a camera is Connected and PortPanic
 can read Capture One. It is unavailable while a drop is being confirmed, an
 alert or Delay alert is pending, an approval is running, or a Test Alert or
 Listen is playing. It cannot silence a Loss Alert that is already open; use
@@ -118,12 +115,11 @@ Nothing about it is saved, and it never turns itself back on.</p>
 <h3 id="the-shortcut">The shortcut</h3>
 <p>The shortcut works from any app and needs no extra permission. During a Loss
 Alert it dismisses the alert instead, and it never approves in the same press.
-Change it or turn it off in Advanced, under Approve Disconnect. Turning it off
+Change it or turn it off in Shortcuts, under Unplug. Turning it off
 is remembered. It cannot be the same keys as the Dismiss shortcut. If another
-app already uses it, Advanced says so; choose another shortcut or use the menu.</p>
+app already uses it, choose another shortcut or use the menu.</p>
 <h3 id="stream-deck">Stream Deck</h3>
-<p>Open Settings, Advanced, and click Install Stream Deck Plugin under Approve
-Disconnect. Complete the install in Stream Deck, then drag PortPanic Control
+<p>Open Settings, Shortcuts and click Install key under Stream Deck. Complete the install in Stream Deck, then drag PortPanic Control
 onto an unused key. The installer is included with PortPanic; the Stream Deck
 app must already be installed.</p>
 <p>The optional PortPanic Control plugin adds one key. It always shows what
@@ -138,17 +134,17 @@ PortPanic reports, and one press does the one thing that makes sense:</p>
 </thead>
 <tbody>
 <tr>
-<td>Green, shield, Armed</td>
+<td>Green, checked camera, Connected / Unplug</td>
 <td>Connected and protected</td>
 <td>Approves a disconnect</td>
 </tr>
 <tr>
-<td>Amber ring with seconds, Approved</td>
+<td>Blue ring with seconds, Approved / Cancel</td>
 <td>Approval counting down</td>
 <td>Cancels it</td>
 </tr>
 <tr>
-<td>Amber camera with slash, Lost / Approved</td>
+<td>Blue camera with slash, Lost / Approved</td>
 <td>The approved drop</td>
 <td>Nothing; it stays silent</td>
 </tr>
@@ -163,7 +159,7 @@ PortPanic reports, and one press does the one thing that makes sense:</p>
 <td>Nothing</td>
 </tr>
 <tr>
-<td>Yellow question mark, Check</td>
+<td>Amber question mark, Last known</td>
 <td>Capture One is not answering</td>
 <td>Nothing</td>
 </tr>
@@ -197,27 +193,25 @@ supported rate, such as 5 / 10 Gb/s. The full warning names the faster available
 port. A camera's documented capability does not identify a faulty cable or
 guarantee photo transfer throughput. A known USB 2.0-only camera at 480 Mb/s
 gets guidance explaining its camera limit. A faster cable cannot exceed it.
-Development build 459 includes 97 documented models and expands through app
-updates. Uncertain specifications, including the R6 Mark II, stay unconfirmed
+The catalog covers 97 documented models. Uncertain specifications, including the R6 Mark II, stay unconfirmed
 and keep the ordinary slow-speed and observed-drop warnings. The catalog
 stays on your Mac and makes no network requests.</p>
-<p>Camera specification comparisons are in development builds 456 and later. The current
-public Beta 3 download has the below-5 and observed-drop warnings.</p>
 <p>The warning uses the same serif camera name and right-hand Dismiss
 as the Loss panel, with an amber speed row. Check the USB cable, hub and port. A short Chirp plays
 once through your selected output and respects Mute and Volume. The banner
 leaves keyboard focus in your shooting app. Dismiss stops the banner and sound;
-the menu and Settings, Monitoring keep the warning until speed recovers.
+the menu and Settings, Camera keep the warning until speed recovers.
 Another speed change can warn again. Loss and Recovery take priority.</p>
 <p>Unavailable speed does not mean a slow connection. PortPanic needs current,
 unambiguous USB information and Capture One must confirm the tether. Turn on
-Use USB to detect drops sooner in Advanced to enable USB speed information.</p>
+USB detection in Settings, Camera to enable USB speed information.</p>
 <h2 id="the-alerts">The alerts</h2>
 <h3 id="loss-alert">Loss Alert</h3>
 <p>When a tethered camera drops, a red glow appears around your screen edges and
 the Loss sound loops. Clicks pass through the glow to the apps underneath, and
 your keyboard focus stays where it was. A horizontal control shows the camera
-name above Lost and Capture One, with Dismiss on the right. It follows your
+name and a disconnected camera symbol, with Dismiss on the right. If you
+use a Dismiss shortcut, the button shows its key. It follows your
 Mac's light or dark appearance. Only the Dismiss button takes a click. Turn off Show dialog in Alerts to hide
 this control while keeping glow and sound. Menu Dismiss and shortcuts still work.</p>
 <p>The Loss Alert keeps going until one of these happens:</p>
@@ -230,9 +224,8 @@ this control while keeping glow and sound. Menu Dismiss and shortcuts still work
 <p>Dismiss stops the light and sound. It does not mean the camera is back. The
 menu still says Lost, and you will not get a second alert for the same drop.
 If you use two cameras and the second one also drops, you get a new alert.</p>
-<p>You can also dismiss with Return, keypad Enter or Escape. This is on by default
-in development build 457 and later. Saved on/off choices are kept. Settings,
-Advanced can turn it off or record a custom shortcut. These keys only act while
+<p>You can also dismiss with Return, keypad Enter or Escape. This is on by default.
+Go to Settings, Shortcuts to turn it off or record a custom shortcut. These keys only act while
 a Loss Alert is showing. The rest of the time they work as usual.</p>
 <h3 id="recovery-alert">Recovery Alert</h3>
 <p>When a camera is tethered again, the glow turns green, the Recovery sound plays
@@ -245,9 +238,9 @@ side by side, or stacked in a narrow window. They show the proportions and
 glow coverage of the display holding Settings. Moving Settings to another
 display updates the previews. Full-screen tests show the actual alert.</p>
 <ul>
-<li>Click Test Loss Alert below the Loss preview. You get the real full-screen glow
+<li>Click the Loss preview. You get the real full-screen glow
   and sound. Click Stop or Dismiss to end it.</li>
-<li>Click Test Recovery Alert below the Recovery preview. It ends on its own after
+<li>Click the Recovery preview. It ends on its own after
   three seconds with a bundled sound, or at the end of your custom audio.</li>
 <li>Click Listen next to a sound to hear it without the glow. The Loss sound
   loops until you click Stop. The Recovery sound plays once.</li>
@@ -290,7 +283,9 @@ test after you change displays, speakers or settings.</p>
   repeats; Recovery plays the entire file once. Very rapid accents are softened.
   Use the Sound picker to return to a bundled choice. A failed or cancelled
   import keeps your previous sound.</li>
-<li><strong>Dismiss options.</strong> Expand this row in Alerts for Show dialog, Dismiss label, Auto-dismiss and Fade out. Its summary shows the current dialog and timeout choices.</li>
+<li><strong>Dismiss options.</strong> The dialog and timer icons below the Loss preview
+  control panel visibility and Auto-dismiss. Use the text field to change
+  the Dismiss label. Fade out appears when Auto-dismiss is on.</li>
 <li><strong>Auto-dismiss.</strong> Off by default. End Loss glow and sound after 1 to 60
   seconds. The slider defaults to ten seconds. Status stays Lost until the
   camera returns. A full-screen Loss test follows the same timeout.</li>
@@ -306,50 +301,23 @@ test after you change displays, speakers or settings.</p>
   Dismiss, audio output, mute, icon visibility, login and Capture One access
   settings are kept.</li>
 </ul>
-<h3 id="monitoring">Monitoring</h3>
+<h3 id="camera">Camera</h3>
 <ul>
 <li><strong>Camera history.</strong> Keeps the latest 20 camera drops with their times and
   observed duration. Tether restored means Capture One confirmed a camera
   again. Monitoring ended means Capture One or its session/catalog closed.
   Monitoring interrupted means PortPanic reopened with an unfinished record.
   Its end time and duration are unknown.
-  The menu's Last drop action shows the latest drop's date/time and opens
-  this list. Clear History removes it.
+  Use the history icon at the top of the menu to open this list. Clear History
+  removes it.
   Alert tests and sound auditions add no history.
   History is stored in <code>~/Library/Application Support/PortPanic/camera-history.json</code>.</li>
 <li><strong>Capture One access.</strong> Shows whether access is allowed, with Allow Capture
   One and Open System Settings when it is not.</li>
 <li><strong>Before shooting.</strong> Shows Capture One access, whether a session or catalog
   is open, the tethered camera and known USB Link Speed. Last known information
-  stays marked. Test Loss Alert checks PortPanic's notification. Take a test
-  photo in Capture One to confirm that capture works.
-  Open Settings with the menu gear, then choose Monitoring.</li>
-<li><strong>Support.</strong> Expand this row for Show Log, Export Diagnostics and Report a Problem.</li>
-<li><strong>Show Log.</strong> Opens the current log file.</li>
-<li><strong>Export Diagnostics.</strong> Saves a file you can attach to a bug report. It
-  includes the PortPanic version, macOS version, your settings, camera history, recent logs and
-  camera and audio device names. It never includes image names or session
-  paths. Nothing is uploaded.</li>
-<li><strong>App.</strong> Launch at login, Hide menu bar icon and automatic update checks are grouped here.</li>
-<li><strong>Hide menu bar icon.</strong> Off by default. Monitoring and alerts continue while
-  hidden. Open PortPanic from Applications to return to Settings.</li>
-</ul>
-<h3 id="advanced">Advanced</h3>
-<ul>
-<li><strong>Transfer settings.</strong> Export Settings saves your alert choices and selected
-  custom sounds in one JSON file. Import Settings applies a saved file after
-  checking its settings and audio. The file can be up to 256 MiB. Custom sounds
-  keep their names and audio and get new local copies. Access, login, updates,
-  Audio Output and camera history stay on the destination Mac. Choose an output
-  there if needed, then use Test Loss Alert. Cancel or an invalid file leaves
-  the previous settings intact. Nothing is uploaded.</li>
-<li><strong>Shortcuts.</strong> Dismiss alert, Approve disconnect and the Stream Deck installer share this section. Shortcut symbols are compact; recording and Clear work as before.</li>
-<li><strong>Dismiss shortcuts.</strong> Use Enter or Escape to dismiss is on by default in
-  development build 457 and later, with saved choices kept. It accepts plain
-  Return, keypad Enter and Escape. You can also record a shortcut that includes
-  Command or Control, with optional Option and Shift. A recorded shortcut takes
-  precedence over the built-in keys. Both only act during a Loss Alert. If another app already uses your shortcut, PortPanic says so and the
-  Dismiss button still works.</li>
+  stays marked. The Test tile checks PortPanic's notification. Take a test
+  photo in Capture One to confirm that capture works.</li>
 <li><strong>Delay alert.</strong> Zero to ten seconds, off by default. PortPanic waits this
   long after a confirmed drop before alerting. A camera that returns within the
   delay stays quiet. This helps with cameras that briefly reconnect on their
@@ -358,6 +326,33 @@ test after you change displays, speakers or settings.</p>
   confirms a drop right away, and the menu shows Link Speed. When it is off,
   PortPanic confirms a drop with two Capture One checks in a row and Link Speed
   is not shown.</li>
+</ul>
+<h3 id="shortcuts">Shortcuts</h3>
+<ul>
+<li><strong>Dismiss shortcuts.</strong> Use Enter or Escape to dismiss is on by default.
+  It accepts plain Return, keypad Enter and Escape. You can also record a shortcut that includes
+  Command or Control, with optional Option and Shift. A recorded shortcut takes
+  precedence over the built-in keys. Both act during a Loss Alert. If another app
+  already uses your shortcut, PortPanic says so and the Dismiss button still works.</li>
+<li><strong>Unplug.</strong> Set the shortcut and Approval window. The button uses the same
+  action as the menu.</li>
+<li><strong>Stream Deck.</strong> Install or update the bundled PortPanic Control plugin.</li>
+</ul>
+<h3 id="general">General</h3>
+<ul>
+<li><strong>App.</strong> Choose whether PortPanic starts at login, shows its menu bar icon,
+  and checks for updates automatically.</li>
+<li><strong>Settings file.</strong> Export saves your alert choices and selected
+  custom sounds in one JSON file. Import applies a saved file after
+  checking its settings and audio. The file can be up to 256 MiB. Custom sounds
+  keep their names and audio and get new local copies. Access, login, updates,
+  Audio Output and camera history stay on the destination Mac. Choose an output
+  there if needed, then click the Loss preview in Alerts. Cancel or an invalid
+  file leaves the previous settings intact. Nothing is uploaded.</li>
+<li><strong>Support.</strong> Diagnostics saves a file with the PortPanic and macOS versions,
+  settings, camera history, recent logs and camera and audio device names.
+  It excludes image names and session paths. Log opens the current log file.
+  Report opens GitHub Issues.</li>
 </ul>
 <h2 id="things-to-know">Things to know</h2>
 <ul>
@@ -384,7 +379,7 @@ Capture One itself.</p>
 a camera that Capture One shows as tethered. Check Capture One's camera tools.</p>
 <p><strong>The menu says Idle.</strong> Open Capture One and a session or catalog.</p>
 <p><strong>No sound.</strong> Check that your Mac is not muted and its output volume is up.
-Turn off Mute sounds and check Output and Volume in Settings, Alerts. Then
+Unmute with the speaker icon and check Output and Volume in Settings, Alerts. Then
 click Listen. If a sound fails to play, Settings shows a message next to it.</p>
 <p><strong>No glow, or the glow is on the wrong display.</strong> Check Display Scope and make
 sure Intensity is above zero. All Displays is the simplest setting.</p>
@@ -392,14 +387,14 @@ sure Intensity is above zero. All Displays is the simplest setting.</p>
 show Settings. See <a href="#find-the-menu-bar-icon">Find the menu bar icon</a>.</p>
 <p>If none of this helps, report it on
 <a href="https://github.com/austinpresley/PortPanic-Releases/issues">GitHub Issues</a> and attach
-the file from Settings, Monitoring, Export Diagnostics.</p>
+the file from Settings, General, Support, Diagnostics.</p>
 <h2 id="update">Update</h2>
-<p>Open Settings, Monitoring and choose Check for Updates. Check for updates
-automatically is on by default for daily checks. You can turn it off there.
+<p>Open Settings, General and click the circular arrow beside Updates.
+Automatic update checks run daily by default. You can turn it off there.
 Your saved choice is kept when updating. You always choose when to install.
 Update checks, prompts and installation wait while a camera is Connected or
 Lost, status is uncertain, or a test or audition runs.
-Scheduled checks show an available version in Monitoring without opening an
+Scheduled checks show an available version in General without opening an
 update window. Choose Check for Updates to review and install it.</p>
 <p>To update manually instead:</p>
 <ol>
@@ -407,7 +402,7 @@ update window. Choose Check for Updates to review and install it.</p>
    <a href="https://austinpresley.github.io/PortPanic-Releases/#download">download page</a>.</li>
 <li>Quit PortPanic from its menu.</li>
 <li>Drag the new PortPanic to Applications and replace the old copy.</li>
-<li>Open PortPanic and run a quick Test Loss Alert.</li>
+<li>Open PortPanic and click the Loss preview in Settings, Alerts to run a test.</li>
 </ol>
 <p>Your settings and Capture One access are kept.</p>
 <h2 id="support-portpanic">Support PortPanic</h2>
@@ -417,7 +412,7 @@ Settings, About PortPanic, or visit
 The link opens your browser. Support is optional.</p>
 <h2 id="uninstall">Uninstall</h2>
 <ol>
-<li>Turn off Launch at login in Settings, Monitoring.</li>
+<li>Turn off Launch at login in Settings, General.</li>
 <li>Quit PortPanic from its menu.</li>
 <li>Delete PortPanic from Applications.</li>
 </ol>

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://austinpresley.github.io/PortPanic-Releases/#download"><b>Download 3.2.0 Beta 2</b></a>
+  <a href="https://austinpresley.github.io/PortPanic-Releases/#download"><b>Download 3.2.0 Beta 3</b></a>
   &emsp;
   <a href="https://austinpresley.github.io/PortPanic-Releases/#try-it">Try&nbsp;it&nbsp;with&nbsp;sound</a>
 </p>
@@ -35,16 +35,13 @@ Every display glows red and the alarm loops until the camera returns or you dism
 
 ## Unplug on purpose
 
-Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>D</kbd> or tap the optional Stream Deck key. Unplug within 15 seconds. That drop stays silent, and the green Recovery alert still confirms the return.
+Swapping a battery? Choose **Unplug** in the menu, press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>D</kbd> or tap the optional Stream Deck key. Unplug within 15 seconds. That drop stays silent, and the green Recovery alert still confirms the return.
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark) and (max-width: 600px)" srcset=".github/readme/swap-dark-mobile.png">
-    <source media="(max-width: 600px)" srcset=".github/readme/swap-light-mobile.png">
-    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/swap-dark.png">
-    <img src=".github/readme/swap-light.png" width="800" alt="Native menu previews. Before unplugging, Connected offers Approve Disconnect. During an approved swap, Lost remains visible with Approved and Silent until a camera returns.">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/unplug-beta3-dark.png">
+    <img src=".github/readme/unplug-beta3-light.png" width="366" alt="PortPanic's Connected menu showing the tethered camera and the Unplug button.">
   </picture>
-  <br><sub>Menu layout included in Beta 2.</sub>
 </p>
 
 - **Catch slow USB links.** Get a warning below 5 Gb/s or below the fastest speed seen during the current watch.
@@ -54,7 +51,7 @@ Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</k
 
 1. [Download the DMG](https://austinpresley.github.io/PortPanic-Releases/#download) and drag PortPanic to Applications.
 2. Open Capture One with a session or catalog. Open PortPanic and allow Capture One access when asked.
-3. Tether your camera. In Settings, Alerts, choose **Test Loss Alert** to check the glow and sound. Take a test photo in Capture One to verify capture.
+3. Tether your camera. In Settings, Alerts, click the **Loss** preview to check the glow and sound. Take a test photo in Capture One to verify capture.
 
 > [!NOTE]
 > This is a public beta. Real-camera, extended-shooting, fresh-install and macOS 14/Intel checks are still in progress. Test with your setup before relying on it during a shoot.
@@ -64,7 +61,7 @@ Swapping a battery? Choose **Approve Disconnect** in the menu, press <kbd>⌃</k
 
 PortPanic reads Capture One's tethered-camera list every second or two. Access is read-only. It never changes your session or catalog. A drop needs a matching USB removal or two consecutive Capture One checks. USB alone never counts as connected.
 
-The hero animates the website demo with native menu captures from build 467. The same menu layout is included in the current Beta 2 download, build 469. The illustrated demo shows the alert and approved-disconnect behavior.
+The animated example shows how the alert works. The screenshot above shows the current menu.
 
 </details>
 

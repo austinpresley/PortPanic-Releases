@@ -24,4 +24,4 @@ body:
     id: diagnostics
     attributes:
       label: Diagnostics or screenshots
-      description: Optional. In Settings, Monitoring, choose Export Diagnostics. Review the file before attaching it here. It can include camera and audio device names. This issue and attachments are public.
+      description: Optional. In Settings, General, under Support, choose Diagnostics. Review the file before attaching it here. It can include camera and audio device names. This issue and attachments are public.
