@@ -1,7 +1,7 @@
 import { initialState, transition } from "./demo-state.mjs?v=redesign-1";
 import { cable, clampPlug, dragCrossing, restingX, stepSpring, wirePath } from "./tether-cable.mjs?v=redesign-1";
 
-import { releaseView } from "./release-view.mjs?v=beta-1";
+import { releaseView } from "./release-view.mjs?v=beta3-refresh";
 
 import { displayContour } from "./display-contour.mjs?v=notch-1";
 
@@ -97,8 +97,8 @@ function renderSound() {
   document.querySelector(".card-speaker").innerHTML = soundEnabled
     ? '<path d="M3 8h4l4-4v12l-4-4H3zM14 7a5 5 0 0 1 0 6"/>'
     : '<path d="M3 8h4l4-4v12l-4-4H3zM14 7l4 6m0-6-4 6"/>';
-  caption.textContent = soundEnabled ? "Example camera. Plays PortPanic's Swell and Bloom sounds."
-    : "Example camera. Turn sound on to hear the alert.";
+  caption.textContent = soundEnabled ? "Illustrated preview. Sound uses PortPanic's Swell and Bloom cues."
+    : "Illustrated preview. Sound is off.";
   document.querySelector("#sound-feedback").textContent = soundFailed
     ? "Sound could not play. Turn sound on to try again. The visual preview still works." : "";
 }
@@ -130,13 +130,11 @@ function render() {
   document.querySelector("#card-status-text").textContent = state.connection === "connected" ? "Connected" : state.connection === "lost" ? "Lost" : "Waiting";
   document.querySelector("#card-status-symbol").dataset.symbol = state.connection;
   const source = document.querySelector("#card-source");
-  if (state.pending) source.innerHTML = 'Mac <span class="source-check" aria-label="detected">✓</span><span class="source-arrow" aria-hidden="true">→</span> Capture One <span class="pending-circle" aria-label="pending"></span>';
-  else if (state.connection === "connected") source.textContent = "Capture One";
+  if (state.pending) source.innerHTML = 'Mac <span class="source-check" aria-label="detected">✓</span> Capture One <span class="pending-circle" aria-label="pending"></span>';
+  else if (state.connection === "connected") source.innerHTML = 'Capture One <span class="source-check" aria-label="confirmed">✓</span>';
   else source.innerHTML = 'Capture One <span class="pending-circle" aria-label="pending"></span>';
   document.querySelector("#card-speed-row").hidden = !(state.connection === "connected" || (state.connection === "waiting" && state.pending));
-  document.querySelector("#card-loss-row").hidden = state.connection !== "lost";
-  document.querySelector("#card-notice").textContent = state.dismissed ? "Alert dismissed" : "";
-  document.querySelector("#card-dismiss").disabled = state.alert !== "loss";
+  document.querySelector("#card-loss-row").hidden = state.alert !== "loss";
   document.querySelector("#overlay-dismiss").hidden = state.alert !== "loss";
   document.querySelector("#menu-camera").dataset.symbol = state.connection;
   renderSound();
